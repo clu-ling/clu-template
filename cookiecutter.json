@@ -1,0 +1,5 @@
+{
+    "repo_name": "clu-fixme",
+    "package_name": "fixme",
+    "package_image_name": "{{ cookiecutter.repo_name }}"
+}
