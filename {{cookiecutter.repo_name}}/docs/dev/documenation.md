@@ -26,17 +26,17 @@ docker run --rm -it -v $PWD:/app \
   pdoc --html -c latex_math=True --force --output-dir docs/api --http 0.0.0.0:8001 clu
 ```
 
-Open your browser to [localhost:8001/clu/{{cookiecutter.package_name}}](localhost:8001/clu/{{cookiecutter.package_name}}) to see live updates.
+Open your browser to [localhost:8001/{{cookiecutter.namespace}}/{{cookiecutter.package_name}}](localhost:8001/{{cookiecutter.namespace}}/{{cookiecutter.package_name}}) to see live updates.
 
 ### Anaconda
 
 ```bash
 source activate {{cookiecutter.repo_name}}
 # execute the following command from the project root:
-pdoc --html -c latex_math=True --force --output-dir docs/api --http 0.0.0.0:8001 clu
+pdoc --html -c latex_math=True --force --output-dir docs/api --http 0.0.0.0:8001 {{cookiecutter.namespace}}
 ```
 
-Open your browser to [localhost:8001/clu/{{cookiecutter.package_name}}](localhost:8001/clu/{{cookiecutter.package_name}}) to see live updates.
+Open your browser to [localhost:8001/{{cookiecutter.namespace}}/{{cookiecutter.package_name}}](localhost:8001/{{cookiecutter.namespace}}/{{cookiecutter.package_name}}) to see live updates.
 
 ## General documentation
 

@@ -1,5 +1,8 @@
 {
-    "repo_name": "clu-fixme",
+    "organization": "clu-ling",
+    "namespace": "clu",
     "package_name": "fixme",
-    "package_image_name": "{{ cookiecutter.repo_name }}"
+    "repo_name": "{{ cookiecutter.namespace }}-{{cookiecutter.package_name }}",    
+    "package_image_name": "{{ cookiecutter.repo_name }}",
+    "authors": "[myedibleenso, zwellington]"
 }

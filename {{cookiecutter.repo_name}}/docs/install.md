@@ -1,6 +1,6 @@
 # Installation
 
-`clu-{{cookiecutter.package_name}}` can be run one of two ways:
+`{{cookiecutter.repo_name}}` can be run one of two ways:
 
 1. Local installation of [Python library (>= v3.8)](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
 2. Using [Docker](https://docs.docker.com/get-docker/)
@@ -15,7 +15,7 @@
 To install directly from the default branch of the repository:
 
 ```bash
-pip install git+https://github.com/clu-ling/{{cookiecutter.repo_name}}.git
+pip install git+https://github.com/{{cookiecutter.organization}}/{{cookiecutter.repo_name}}.git
 ```
 
 ## Docker

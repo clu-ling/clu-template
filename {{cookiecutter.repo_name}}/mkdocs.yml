@@ -1,9 +1,9 @@
 site_name: {{cookiecutter.repo_name}}
-site_url: https://clu-ling.github.io/{{cookiecutter.repo_name}}
+site_url: https://{{cookiecutter.organization}}.github.io/{{cookiecutter.repo_name}}
 site_description: Project documentation with Markdown.
 site_author: Gus Hahn-Powell
 
-repo_url: https://github.com/clu-ling/{{cookiecutter.repo_name}}/
+repo_url: https://github.com/{{cookiecutter.organization}}/{{cookiecutter.repo_name}}/
 edit_uri: "blob/main/docs/"
 
 theme:
@@ -36,7 +36,7 @@ nav:
         - Documentation: dev/documentation.md
         - Formatting: dev/formatting.md
     - API:
-        - "clu.{{cookiecutter.package_name}}": api/clu/{{cookiecutter.package_name}}/index.html
+        - "{{cookiecutter.namespace}}.{{cookiecutter.package_name}}": api/{{cookiecutter.namespace}}/{{cookiecutter.package_name}}/index.html
     - About:
         #- Release Notes: about/release-notes.md
         - Contributing: contributing.md
@@ -59,9 +59,6 @@ markdown_extensions:
     - admonition
     - attr_list
     - def_list
-    # - mdx_gh_links:
-    #     user: clu-ling
-    #     repo: clu-phontools
 
 copyright: Copyright &copy; 2021 <a href="https://parsertongue.org/about">Gus Hahn-Powell</a>.
 #copyright: Copyright &copy; 2021 <a href="https://parsertongue.org/about">Gus Hahn-Powell</a>, Maintained by the <a href="/about/release-notes/#maintenance-team">CLU-LING Team</a>.
