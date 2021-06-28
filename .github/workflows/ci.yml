@@ -58,8 +58,10 @@ jobs:
     - name: "Create documentation (other)"
       env:
         ORG: "parsertongue"
-        IMAGE_NAME: "clu-template"
-      run: docker run -i -v "$GITHUB_WORKSPACE:/app" "${ORG}/${IMAGE_NAME}" mkdocs build -c
+        IMAGE_NAME: "mkdocs"
+      run: |
+        docker pull "${ORG}/${IMAGE_NAME}"
+        docker run -i -v "$GITHUB_WORKSPACE:/app" "${ORG}/${IMAGE_NAME}" mkdocs build -c
       #run: docker run -i -v "$GITHUB_WORKSPACE:/app" "${ORG}/${IMAGE_NAME}" portray as_html
     - name: Deploy docs
       if: github.ref == 'refs/heads/main'
