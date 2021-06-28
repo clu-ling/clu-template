@@ -52,7 +52,10 @@ setup(
     author_email=info.contact,
     license=info.license,
     # see https://python-packaging.readthedocs.io/en/latest/command-line-scripts.html
-    scripts=["example-script"],
+    scripts=[
+        "bin/example-script",
+        "bin/{{cookiecutter.repo_name}}-rest-api"
+        ],
     install_requires=required,
     classifiers=[
         "Intended Audience :: Science/Research",

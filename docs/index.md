@@ -1,9 +1,7 @@
-# Usage
+# What is it?
 
-```docker run -it -v $PWD:/app parsertongue/cookiecutter:latest```
+`clu-template` is a github repository template designed for clu projects. It can be used to generate new clu projects or projects under any namespace (specified by the user).
 
-Will accept the default values in `cookiecutter.json`.
+# How do I use it?
 
-```docker run -it -v $PWD:/app parsertongue/cookiecutter:latest cookiecutter https://github.com/clu-ling/clu-template```
-
-Will allow for custom inputs.
+See [`Usage`](tutorial.md)
