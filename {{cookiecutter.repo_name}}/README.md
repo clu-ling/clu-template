@@ -2,4 +2,4 @@
 
 ## Build
 
-```docker build -f Dockerfile -t parsertongue/{{cookiecutter.package_image_name}}:latest .```
+```docker build -f Dockerfile -t {{ cookiecutter.organization }}/{{ cookiecutter.package_image_name }}:latest .```
