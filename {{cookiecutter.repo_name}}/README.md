@@ -2,4 +2,4 @@
 
 ## Build
 
-```docker build -f Dockerfile -t {{ cookiecutter.organization }}/{{ cookiecutter.package_image_name }}:latest .```
+```docker build -f Dockerfile -t {{ cookiecutter.image_organization }}/{{ cookiecutter.image_name }}:latest .```
