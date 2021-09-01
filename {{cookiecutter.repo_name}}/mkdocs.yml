@@ -1,9 +1,9 @@
 site_name: {{cookiecutter.repo_name}}
-site_url: https://{{cookiecutter.organization}}.github.io/{{cookiecutter.repo_name}}
+site_url: https://{{cookiecutter.repo_organization}}.github.io/{{cookiecutter.repo_name}}
 site_description: Project documentation with Markdown.
 site_author: Gus Hahn-Powell
 
-repo_url: https://github.com/{{cookiecutter.organization}}/{{cookiecutter.repo_name}}/
+repo_url: https://github.com/{{cookiecutter.repo_organization}}/{{cookiecutter.repo_name}}/
 edit_uri: "blob/main/docs/"
 
 theme:

@@ -20,16 +20,16 @@ For those familiar with Docker, another option is to use a container with bind m
 First, you'll need to build the docker image:
 
 ```bash
-docker build -f Dockerfile -t "parsertongue/{{cookiecutter.package_image_name}}:latest" .
+docker build -f Dockerfile -t "parsertongue/{{cookiecutter.image_name}}:latest" .
 ```
 
 Launch a container using this image and connect to it:
 
 ```bash
-docker run -it -v $PWD:/app "parsertongue/{{cookiecutter.package_image_name}}:latest /bin/bash"
+docker run -it -v $PWD:/app "parsertongue/{{cookiecutter.image_name}}:latest /bin/bash"
 ```
 
-Thanks to the bind mount, changes made to files locally (i.e., outside of the container) will be reflected inside the running container.  The `parsertongue/{{cookiecutter.package_image_name}}` includes Jupyter and iPython:
+Thanks to the bind mount, changes made to files locally (i.e., outside of the container) will be reflected inside the running container.  The `parsertongue/{{cookiecutter.image_name}}` includes Jupyter and iPython:
 
 ### Removing old docker containers, images, etc.
 

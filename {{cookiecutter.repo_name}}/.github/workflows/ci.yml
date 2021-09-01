@@ -39,37 +39,35 @@ jobs:
         username: ${{ "{{" }} secrets.DOCKERHUB_USERNAME }}
         password: ${{ "{{" }} secrets.DOCKERHUB_TOKEN }}
     # Library (docker)
-    - name: "Build docker image ({{cookiecutter.package_image_name}})"
+    - name: "Build docker image ({{cookiecutter.image_name}})"
       #working-directory: ./
       env:
         DOCKERFILE: "Dockerfile"
-        ORG: "parsertongue"
-        IMAGE_NAME: "{{cookiecutter.package_image_name}}"
-        TAG: "3.8"
+        ORG: "{{cookiecutter.image_organization}}"
+        IMAGE_NAME: "{{cookiecutter.image_name}}"
       run: |
-        docker buildx build --output=type=docker --platform=linux/amd64,linux/arm64 -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${TAG}" -t "${ORG}/${IMAGE_NAME}:${{ "{{" }} needs.setup.outputs.sha_short }}" .
-    #    docker build -f Dockerfile -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${{ "{{" }} needs.setup.outputs.sha_short }}" .
+        docker build -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${{ "{{" }} needs.setup.outputs.sha_short }}" .
     # Tests
     - name: "Tests and coverage ({{cookiecutter.package_name}})"
       env:
         ORG: "parsertongue"
-        IMAGE_NAME: "{{cookiecutter.package_image_name}}"
+        IMAGE_NAME: "{{cookiecutter.image_name}}"
       run: |
         docker run -i "${ORG}/${IMAGE_NAME}:latest" green -vvv /app
     # Type checks
     - name: "Type checks ({{cookiecutter.repo_name}})"
       continue-on-error: true
       env:
-        ORG: "parsertongue"
-        IMAGE_NAME: "{{cookiecutter.package_image_name}}"
+        ORG: "{{cookiecutter.image_organization}}"
+        IMAGE_NAME: "{{cookiecutter.image_name}}"
       run : |
         docker run -i "${ORG}/${IMAGE_NAME}:latest" mypy --ignore-missing-imports --follow-imports=skip --strict-optional /app
     # publish
-    - name: "Publish docker image ({{cookiecutter.package_image_name}} image)"
+    - name: "Publish docker image ({{cookiecutter.image_name}} image)"
       continue-on-error: true
       env:
-        ORG: "parsertongue"
-        IMAGE_NAME: "{{cookiecutter.package_image_name}}"
+        ORG: "{{cookiecutter.image_organization}}"
+        IMAGE_NAME: "{{cookiecutter.image_name}}"
       if: github.ref == 'refs/heads/main'
       run: docker push --all-tags "${ORG}/${IMAGE_NAME}"
 
@@ -77,21 +75,21 @@ jobs:
     - name: "Code formatting & linting"
       continue-on-error: true
       env:
-        ORG: "parsertongue"
-        IMAGE_NAME: "{{cookiecutter.package_image_name}}"
+        ORG: "{{cookiecutter.image_organization}}"
+        IMAGE_NAME: "{{cookiecutter.image_name}}"
       run: docker run -i "${ORG}/${IMAGE_NAME}" black --check /app
 
     # docs
     - name: "Create documentation (API docs)"
       env:
-        ORG: "parsertongue"
-        IMAGE_NAME: "{{cookiecutter.package_image_name}}"
+        ORG: "{{cookiecutter.image_organization}}"
+        IMAGE_NAME: "{{cookiecutter.image_name}}"
       run: docker run -i -v "$GITHUB_WORKSPACE:/app" "${ORG}/${IMAGE_NAME}" pdoc --html -c latex_math=True --force --output-dir docs/api clu
     # docs
     - name: "Create documentation (other)"
       env:
-        ORG: "parsertongue"
-        IMAGE_NAME: "{{cookiecutter.package_image_name}}"
+        ORG: "{{cookiecutter.image_organization}}"
+        IMAGE_NAME: "{{cookiecutter.image_name}}"
       run: docker run -i -v "$GITHUB_WORKSPACE:/app" "${ORG}/${IMAGE_NAME}" mkdocs build -c
       #run: docker run -i -v "$GITHUB_WORKSPACE:/app" "${ORG}/${IMAGE_NAME}" portray as_html
     - name: Deploy docs

@@ -4,7 +4,7 @@ Code can be auto-formatted using [`black`](https://black.readthedocs.io/en/stabl
 ## Docker
 
 ```bash
-docker run -it -v $PWD:/app "parsertongue/{{cookiecutter.package_image_name}}:latest" black
+docker run -it -v $PWD:/app "parsertongue/{{cookiecutter.image_name}}:latest" black
 ```
 ## Anaconda
 
@@ -24,7 +24,7 @@ The code makes use of Python type hints.
 To perform type checking, run the following command:
 
 ```bash
-docker run -it -v $PWD:/app "parsertongue/{{cookiecutter.package_image_name}}:latest" mypy --ignore-missing-imports --follow-imports=skip --strict-optional .
+docker run -it -v $PWD:/app "parsertongue/{{cookiecutter.image_name}}:latest" mypy --ignore-missing-imports --follow-imports=skip --strict-optional .
 ```
 
 ## Anaconda

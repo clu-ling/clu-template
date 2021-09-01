@@ -15,7 +15,7 @@
 To install directly from the default branch of the repository:
 
 ```bash
-pip install git+https://github.com/{{cookiecutter.organization}}/{{cookiecutter.repo_name}}.git
+pip install git+https://github.com/{{cookiecutter.repo_organization}}/{{cookiecutter.repo_name}}.git
 ```
 
 ## Docker
@@ -26,8 +26,8 @@ pip install git+https://github.com/{{cookiecutter.organization}}/{{cookiecutter.
 
 ### Install
 
-Docker images are periodically published to [DockerHub](https://hub.docker.com/r/parsertongue/{{cookiecutter.package_image_name}}):
+Docker images are periodically published to [DockerHub](https://hub.docker.com/r/parsertongue/{{cookiecutter.image_name}}):
 
 ```bash
-docker pull "parsertongue/{{cookiecutter.package_image_name}}:latest"
+docker pull "parsertongue/{{cookiecutter.image_name}}:latest"
 ```
