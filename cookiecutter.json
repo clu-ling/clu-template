@@ -5,5 +5,8 @@
     "repo_name": "{{ cookiecutter.namespace }}-{{ cookiecutter.package_name }}",    
     "image_organization": "{{ cookiecutter.repo_organization }}",
     "image_name": "{{ cookiecutter.repo_name }}",
-    "authors": "['myedibleenso', 'zwellington']"
+    "authors": "['myedibleenso', 'zwellington']",
+    "description": "template",
+    "contact_info": "email@email.com",
+    "license": "Apache 2.0"
 }

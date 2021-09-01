@@ -9,11 +9,11 @@ class AppInfo:
     """
 
     version: str = "0.1"
-    description: str = "FIXME: Package Description"
-    authors: List[str] = "{{cookiecutter.authors}}"
-    contact: str = "FIXME: Contact info"
-    repo: str = "https://github.com/clu-ling/{{cookiecutter.repo_name}}"
-    license: str = "FIXME: License"
+    description: str = "{{cookiecutter.description}}"
+    authors: List[str] = {{cookiecutter.authors}}
+    contact: str = "{{cookiecutter.contact_info}}"
+    repo: str = "https://github.com/{{cookiecutter.repo_organization}}/{{cookiecutter.repo_name}}"
+    license: str = "{{cookiecutter.license}}"
 
     @property
     def download_url(self) -> str:

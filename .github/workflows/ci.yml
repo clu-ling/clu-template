@@ -53,7 +53,10 @@ jobs:
         docker run -i "${ORG}/${IMAGE_NAME}:amd64" cookiecutter --version
         docker run -i "${ORG}/${IMAGE_NAME}:arm64" cookiecutter --version
 
-    # FIXME: test clu-template
+    # test clu-template
+    - name: Test clu-template
+      run: |
+        docker run -i "${ORG}/${IMAGE_NAME}" cookiecutter --no-input /app
     
     # build and publish
     - name: "Publish docker image (cookiecutter image)"

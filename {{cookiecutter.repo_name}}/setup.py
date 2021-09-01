@@ -2,7 +2,7 @@ from setuptools.command.install import install
 from setuptools.command.develop import develop
 from setuptools import setup
 
-from clu.{{cookiecutter.package_name}}.info import info
+from {{cookiecutter.namespace}}.{{cookiecutter.package_name}}.info import info
 
 # class PackageDevelop(develop):
 #     def run(self):
@@ -41,7 +41,7 @@ dev_deps = test_deps + [
 
 setup(
     name="{{cookiecutter.repo_name}}",
-    packages=["clu.{{cookiecutter.package_name}}"],
+    packages=["{{cookiecutter.namespace}}.{{cookiecutter.package_name}}"],
     version=info.version,
     keywords=["nlp"],
     description=info.description,
@@ -66,9 +66,7 @@ setup(
     tests_require=test_deps,
     extras_require={
         "test": test_deps,
-        "dev": dev_deps,
-        "all": test_deps
-        # 'docs': docs_deps
+        "all": dev_deps
     },
     include_package_data=True,
     zip_safe=False,

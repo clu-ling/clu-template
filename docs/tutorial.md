@@ -50,11 +50,15 @@ Again, you can either use the `-o` flag and specify the output or run this comma
 
 | Variable | Default |
 | :----: | :----: |
-| organization | clu-ling |
 | namespace | clu |
-| package_name | fixme |
-| repo_name | clu-fixme |
-| package_image_name | clu-fixme |
-| authors | [myedibleenso, zwellington] |
+| package_name | template |
+| repo_organization | clu-ling |
+| repo_name | clu-template |
+| image_organization | clu-ling |
+| image_name | clu-template |
+| authors | ['myedibleenso', 'zwellington'] |
+| description | template |
+| contact_info | email@email.com |
+| license | Apache 2.0 |
 
-**NOTE: By default the `repo_name` and `package_image_name` are set as `namespace-package_name`.
+**NOTE: By default the `repo_name` and `image_name` are set as `namespace-package_name`. The `authors` variable MUST include single quotes inside the variable assignment double quotes.
