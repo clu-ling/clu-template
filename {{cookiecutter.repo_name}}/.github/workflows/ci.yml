@@ -45,9 +45,10 @@ jobs:
         DOCKERFILE: "Dockerfile"
         ORG: "parsertongue"
         IMAGE_NAME: "{{cookiecutter.package_image_name}}"
+        TAG: "3.8"
       run: |
-#        docker build -f Dockerfile -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${{ "{{" }} needs.setup.outputs.sha_short }}" .
         docker buildx build --output=type=docker --platform=linux/amd64,linux/arm64 -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${TAG}" -t "${ORG}/${IMAGE_NAME}:${{ "{{" }} needs.setup.outputs.sha_short }}" .
+    #    docker build -f Dockerfile -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${{ "{{" }} needs.setup.outputs.sha_short }}" .
     # Tests
     - name: "Tests and coverage ({{cookiecutter.package_name}})"
       env:
