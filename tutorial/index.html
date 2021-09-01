@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Gus Hahn-Powell">
+  <link rel="canonical" href="https://clu-ling.github.io/clu-template/tutorial/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Usage - clu-template</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  <link href="../css/extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Usage";
+    var mkdocs_page_input_path = "tutorial.md";
+    var mkdocs_page_url = "/clu-template/tutorial/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> clu-template</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">User Guide</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Usage</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#alternative">Alternative</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cookiecutter">Cookiecutter</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#user-inputs">User Inputs</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">About</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="https://opensource.org/licenses/Apache-2.0">License</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">clu-template</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>User Guide &raquo;</li>
+        
+      
+    
+    <li>Usage</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/clu-ling/clu-template/blob/main/docs/tutorial.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link"></a></h1>
+<p>There are two methods to generate a new repository from this template:</p>
+<h2 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link"></a></h2>
+<p>If you have docker, the following commands can be used to generate a new repository:</p>
+<pre><code class="language-bash">docker pull parsertongue/clu-template:latest
+</code></pre>
+<p>Pulls the pre-built image from Dockerhub.</p>
+<pre><code class="language-bash">docker run -i parsertongue/clu-template:latest cookiecutter -o /path/to/output /app
+</code></pre>
+<p>Replace <code>/path/to/output</code> with the desired location for the local repository. This command will prompt the user for <code>cookiecutter.json</code> values, to accept the defaults just press <code>return</code>.</p>
+<p>**NOTE: The user can define a config.yaml and use the following command to avoid input prompts:</p>
+<pre><code class="language-bash">docker run -i parsertongue/clu-template:latest cookiecutter --config-file /path/to/config.yaml -o /path/to/output /app
+</code></pre>
+<p>See <a href="https://cookiecutter.readthedocs.io/en/1.7.2/advanced/user_config.html">the cookiecutter documentation</a> for more information on this method.</p>
+<h3 id="alternative">Alternative<a class="headerlink" href="#alternative" title="Permanent link"></a></h3>
+<p>You can also avoid the <code>-o</code> flag by first navigating to the desired output directory and running this command:</p>
+<pre><code class="language-bash">docker run -i -v $PWD:/app parsertongue/clu-template:latest cookiecutter https://github.com/clu-ling/clu-template.git
+</code></pre>
+<p>The same prompts will occur (and the config option still works).</p>
+<h2 id="cookiecutter">Cookiecutter<a class="headerlink" href="#cookiecutter" title="Permanent link"></a></h2>
+<p>If you don't have Docker, you can also use the template by installing <a href="https://cookiecutter.readthedocs.io/en/1.7.2/installation.html">cookiecutter</a> and running the command:</p>
+<pre><code class="language-bash">cookiecutter https://github.com/clu-ling/clu-template.git
+</code></pre>
+<p>Again, you can either use the <code>-o</code> flag and specify the output or run this command under the desired directory. The config option is still avaiable.</p>
+<h2 id="user-inputs">User Inputs<a class="headerlink" href="#user-inputs" title="Permanent link"></a></h2>
+<table>
+<thead>
+<tr>
+<th align="center">Variable</th>
+<th align="center">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">namespace</td>
+<td align="center">clu</td>
+</tr>
+<tr>
+<td align="center">package_name</td>
+<td align="center">template</td>
+</tr>
+<tr>
+<td align="center">repo_organization</td>
+<td align="center">clu-ling</td>
+</tr>
+<tr>
+<td align="center">repo_name</td>
+<td align="center">clu-template</td>
+</tr>
+<tr>
+<td align="center">image_organization</td>
+<td align="center">clu-ling</td>
+</tr>
+<tr>
+<td align="center">image_name</td>
+<td align="center">clu-template</td>
+</tr>
+<tr>
+<td align="center">authors</td>
+<td align="center">['myedibleenso', 'zwellington']</td>
+</tr>
+<tr>
+<td align="center">description</td>
+<td align="center">template</td>
+</tr>
+<tr>
+<td align="center">contact_info</td>
+<td align="center">email@email.com</td>
+</tr>
+<tr>
+<td align="center">license</td>
+<td align="center">Apache 2.0</td>
+</tr>
+</tbody>
+</table>
+<p>**NOTE: By default the <code>repo_name</code> and <code>image_name</code> are set as <code>namespace-package_name</code>. The <code>authors</code> variable MUST include single quotes inside the variable assignment double quotes.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2021 <a href="https://parsertongue.org/about">Gus Hahn-Powell</a>.</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/clu-ling/clu-template/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
