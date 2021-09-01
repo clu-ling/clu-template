@@ -56,7 +56,7 @@ jobs:
     # test clu-template
     - name: Test clu-template
       run: |
-        docker run -i "${ORG}/${IMAGE_NAME}" cookiecutter --no-input /app
+        docker run -i "${ORG}/${IMAGE_NAME}:amd64" cookiecutter --no-input /app
     
     # build and publish
     - name: "Publish docker image (cookiecutter image)"
