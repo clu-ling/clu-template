@@ -26,8 +26,8 @@ pip install git+https://github.com/{{cookiecutter.repo_organization}}/{{cookiecu
 
 ### Install
 
-Docker images are periodically published to [DockerHub](https://hub.docker.com/r/parsertongue/{{cookiecutter.image_name}}):
+Docker images are periodically published to [DockerHub](https://hub.docker.com/r/{{cookiecutter.image_organization}}/{{cookiecutter.image_name}}):
 
 ```bash
-docker pull "parsertongue/{{cookiecutter.image_name}}:latest"
+docker pull "{{cookiecutter.image_organization}}/{{cookiecutter.image_name}}:latest"
 ```

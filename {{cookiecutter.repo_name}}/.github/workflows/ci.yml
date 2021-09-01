@@ -44,27 +44,32 @@ jobs:
         username: ${{ "{{" }} secrets.DOCKERHUB_USERNAME }}
         password: ${{ "{{" }} secrets.DOCKERHUB_TOKEN }}
     # Library (docker)
-    - name: "Build docker image ({{cookiecutter.image_name}})"
+    - name: "Build multiarch docker image ({{cookiecutter.image_name}})"
       #working-directory: ./
       run: |
-        docker build -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${{ "{{" }} needs.setup.outputs.sha_short }}" .
+        docker build -f ${Dockerfile} -t "${ORG}/${IMAGE_NAME}:latest" .
+        docker buildx build --load --platform linux/amd64 -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:amd64" .
+        docker buildx build --load --platform linux/arm64 -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:arm64" .
+      #  docker build -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${{ "{{" }} needs.setup.outputs.sha_short }}" .
+    - name: "Test multiarch build ({{cookiecutter.package_name}})"
+      run: |
+        docker run -i "${ORG}/${IMAGE_NAME}:amd64" python --version
+        docker run -i "${ORG}/${IMAGE_NAME}:arm64" python --version
     # Tests
     - name: "Tests and coverage ({{cookiecutter.package_name}})"
       run: |
-        docker run -i "${ORG}/${IMAGE_NAME}:latest" green -vvv /app
+        docker run -i "${ORG}/${IMAGE_NAME}" green -vvv /app
     # Type checks
     - name: "Type checks ({{cookiecutter.repo_name}})"
       continue-on-error: true
       run : |
-        docker run -i "${ORG}/${IMAGE_NAME}:latest" mypy --ignore-missing-imports --follow-imports=skip --strict-optional /app
+        docker run -i "${ORG}/${IMAGE_NAME}" mypy --ignore-missing-imports --follow-imports=skip --strict-optional /app
     # publish
-    - name: "Publish docker image ({{cookiecutter.image_name}} image)"
+    - name: "Publish multiarch docker image ({{cookiecutter.image_name}} image)"
       continue-on-error: true
-      env:
-        ORG: "{{cookiecutter.image_organization}}"
-        IMAGE_NAME: "{{cookiecutter.image_name}}"
       if: github.ref == 'refs/heads/main'
-      run: docker push --all-tags "${ORG}/${IMAGE_NAME}"
+      run: |
+        docker buildx build --platform=linux/amd64,linux/arm64 -f ${DOCKERFILE} --push -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${TAG}" -t "${ORG}/${IMAGE_NAME}:${{ needs.setup.outputs.sha_short }}" .
 
     # code formatting and linting
     - name: "Code formatting & linting"

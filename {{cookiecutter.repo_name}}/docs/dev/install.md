@@ -8,10 +8,10 @@
 conda create --name {{cookiecutter.repo_name}} python=3.8 ipython
 source activate {{cookiecutter.repo_name}}
 # execute the following command from the project root:
-pip install -e ".[dev]"
+pip install -e ".[all]"
 ```
 
-`[dev]` will include dependencies for running tests and generating the documentation.
+`[all]` will include dependencies for running tests and generating the documentation.
 
 ## Docker
 
@@ -20,16 +20,16 @@ For those familiar with Docker, another option is to use a container with bind m
 First, you'll need to build the docker image:
 
 ```bash
-docker build -f Dockerfile -t "parsertongue/{{cookiecutter.image_name}}:latest" .
+docker build -f Dockerfile -t "{{cookiecutter.image_organization}}/{{cookiecutter.image_name}}:latest" .
 ```
 
 Launch a container using this image and connect to it:
 
 ```bash
-docker run -it -v $PWD:/app "parsertongue/{{cookiecutter.image_name}}:latest /bin/bash"
+docker run -it -v $PWD:/app "{{cookiecutter.image_organization}}/{{cookiecutter.image_name}}:latest /bin/bash"
 ```
 
-Thanks to the bind mount, changes made to files locally (i.e., outside of the container) will be reflected inside the running container.  The `parsertongue/{{cookiecutter.image_name}}` includes Jupyter and iPython:
+Thanks to the bind mount, changes made to files locally (i.e., outside of the container) will be reflected inside the running container.  The `{{cookiecutter.image_organization}}/{{cookiecutter.image_name}}` includes Jupyter and iPython:
 
 ### Removing old docker containers, images, etc.
 

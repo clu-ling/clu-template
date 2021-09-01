@@ -22,8 +22,8 @@ $$\sum_{i=1}^{\vert X \vert} x_{i}$$
 # execute the following command from the project root:
 docker run --rm -it -v $PWD:/app \
   -p 8001:8001 \
-  parsertongue/{{cookiecutter.image_name}}:latest \
-  pdoc --html -c latex_math=True --force --output-dir docs/api --http 0.0.0.0:8001 clu
+  {{cookiecutter.image_organization}}/{{cookiecutter.image_name}}:latest \
+  pdoc --html -c latex_math=True --force --output-dir docs/api --http 0.0.0.0:8001 {{cookiecutter.namespace}}
 ```
 
 Open your browser to [localhost:8001/{{cookiecutter.namespace}}/{{cookiecutter.package_name}}](localhost:8001/{{cookiecutter.namespace}}/{{cookiecutter.package_name}}) to see live updates.
@@ -48,7 +48,7 @@ We use `mkdocs` to generate our site documentation from markdown.  Markdown sour
 # execute the following command from the project root:
 docker run --rm -it -v $PWD:/app \
   -p 8000:8000 \
-  parsertongue/{{cookiecutter.image_name}}:latest \
+  {{cookiecutter.image_organization}}/{{cookiecutter.image_name}}:latest \
   mkdocs serve -a 0.0.0.0:8000
 ```
 
