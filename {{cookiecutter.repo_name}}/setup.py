@@ -41,6 +41,7 @@ dev_deps = test_deps + [
 
 setup(
     name="{{cookiecutter.repo_name}}",
+    python_requires=">=3.8",
     packages=["{{cookiecutter.namespace}}.{{cookiecutter.package_name}}"],
     version=info.version,
     keywords=["nlp"],
