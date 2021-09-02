@@ -47,10 +47,8 @@ jobs:
     - name: "Build multiarch docker image ({{cookiecutter.image_name}})"
       #working-directory: ./
       run: |
-        docker build -f ${Dockerfile} -t "${ORG}/${IMAGE_NAME}:latest" .
         docker buildx build --load --platform linux/amd64 -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:amd64" .
         docker buildx build --load --platform linux/arm64 -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:arm64" .
-      #  docker build -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${{ "{{" }} needs.setup.outputs.sha_short }}" .
     - name: "Test multiarch build ({{cookiecutter.package_name}})"
       run: |
         docker run -i "${ORG}/${IMAGE_NAME}:amd64" python --version
@@ -78,7 +76,7 @@ jobs:
 
     # docs
     - name: "Create documentation (API docs)"
-      run: docker run -i -v "$GITHUB_WORKSPACE:/app" "${ORG}/${IMAGE_NAME}" pdoc --html -c latex_math=True --force --output-dir docs/api clu
+      run: docker run -i -v "$GITHUB_WORKSPACE:/app" "${ORG}/${IMAGE_NAME}" pdoc --html -c latex_math=True --force --output-dir docs/api {{cookiecutter.namespace}}
     # docs
     - name: "Create documentation (other)"
       env:
