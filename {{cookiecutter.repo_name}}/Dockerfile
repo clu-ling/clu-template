@@ -1,7 +1,7 @@
 FROM python:3.8
 
 LABEL author="Gus Hahn-Powell"
-LABEL description="Image defintion for Python-based {{cookiecutter.repo_name}} project."
+LABEL description="Image definition for Python-based {{cookiecutter.repo_name}} project."
 
 # Create app directory
 WORKDIR /app
