@@ -7,7 +7,8 @@ import unittest
 class TestTemplate(unittest.TestCase):
 
     def test_example(self):
-        assert EXAMPLE == "Example"
+        self.assertEquals(EXAMPLE, "Example")
 
     def test_package(self):
-        assert info.authors == "{{ cookiecutter.authors }}"
+        {% set authors_list = cookiecutter.authors.split(',') %}
+        self.assertEquals(info.authors, {{ authors_list }})
