@@ -7,7 +7,7 @@
 ```bash
 docker pull parsertongue/clu-template:latest
 
-docker run -i parsertongue/clu-template:latest cookiecutter -o /path/to/output /app
+docker run -i -v $PWD:/output parsertongue/clu-template:latest cookiecutter -o /output /app
 ```
 
 ## Cookiecutter
