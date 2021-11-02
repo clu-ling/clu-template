@@ -3,10 +3,12 @@
     "package_name": "template",
     "repo_organization": "clu-ling",    
     "repo_name": "{{ cookiecutter.namespace }}-{{ cookiecutter.package_name }}",    
-    "image_organization": "{{ cookiecutter.repo_organization }}",
+    "image_organization": "parsertongue",
     "image_name": "{{ cookiecutter.repo_name }}",
-    "authors": "['myedibleenso', 'zwellington']",
+    "authors": "myedibleenso,zwellington",
     "description": "template",
     "contact_info": "email@email.com",
+    "include_docker_ci": ["y", "n"],
+    "include_rest_api": ["y", "n"],
     "license": "Apache 2.0"
 }

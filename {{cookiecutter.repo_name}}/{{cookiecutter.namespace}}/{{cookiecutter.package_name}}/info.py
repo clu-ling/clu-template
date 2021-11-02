@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Text
 
 class AppInfo:
     """
@@ -8,12 +8,13 @@ class AppInfo:
     See https://github.com/clu-ling/clu-template for more info.
     """
 
-    version: str = "0.1"
-    description: str = "{{cookiecutter.description}}"
-    authors: List[str] = {{cookiecutter.authors}}
-    contact: str = "{{cookiecutter.contact_info}}"
-    repo: str = "https://github.com/{{cookiecutter.repo_organization}}/{{cookiecutter.repo_name}}"
-    license: str = "{{cookiecutter.license}}"
+    version: Text = "0.1"
+    description: Text = "{{cookiecutter.description}}"
+    {% set authors_list = cookiecutter.authors.split(',') %}
+    authors: List[Text] = {{ authors_list }}
+    contact: Text = "{{cookiecutter.contact_info}}"
+    repo: Text = "https://github.com/{{cookiecutter.repo_organization}}/{{cookiecutter.repo_name}}"
+    license: Text = "{{cookiecutter.license}}"
 
     @property
     def download_url(self) -> str:
