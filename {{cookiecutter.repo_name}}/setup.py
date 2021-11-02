@@ -1,18 +1,7 @@
-from setuptools.command.install import install
-from setuptools.command.develop import develop
 from setuptools import setup
+import os
 
 from {{cookiecutter.namespace}}.{{cookiecutter.package_name}}.info import info
-
-# class PackageDevelop(develop):
-#     def run(self):
-#         develop.run(self)
-
-
-# class PackageInstall(install):
-#     def run(self):
-#         # install everything else
-#         install.run(self)
 
 
 # use requirements.txt as deps list
@@ -26,7 +15,8 @@ with open("README.md", "r") as f:
 test_deps = required + ["green>=2.5.0", "coverage", "mypy"]
 # NOTE: <packagename> @ allows installation of git-based URLs
 dev_deps = test_deps + [
-    "black @ git+git://github.com/psf/black.git",
+    "black",
+    "wheel",
     "mkdocs==1.2.1",
     # "portray @ git+git://github.com/myedibleenso/portray.git@issue/83",
     # "portray @ git+git://github.com/myedibleenso/portray.git@avoid-regressions",
@@ -54,10 +44,16 @@ setup(
     author_email=info.contact,
     license=info.license,
     # see https://python-packaging.readthedocs.io/en/latest/command-line-scripts.html
+    {% if cookiecutter.include_rest_api == 'y' %}
     scripts=[
-        "bin/example-script",
-        "bin/{{cookiecutter.repo_name}}-rest-api"
-        ],
+    #    os.path.join("bin", "example-script"),
+        os.path.join("bin", "{{cookiecutter.repo_name}}-rest-api")
+    ],
+    {% else %}
+    scripts=[
+        #os.path.join("bin", "example-script"),
+    ],
+    {% endif %}
     install_requires=required,
     classifiers=[
         "Intended Audience :: Science/Research",
