@@ -1,0 +1,15 @@
+#!/usr/bin/python
+
+import os
+import argparse
+import subprocess
+
+if __name__=="__main__":
+
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument("--template", help="which template (python/odin)")
+    args = parser.parse_args()
+
+    # run cookiecutter os.path.join("template/", args.template)

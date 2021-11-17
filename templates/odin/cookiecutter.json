@@ -1,0 +1,10 @@
+{
+	"project_name": "logx",
+	"repo_name": "{{ cookiecutter.project_name }}-reader",
+	"repo_organization": "clu-ling",
+	"organization": "parsetongue",
+	"class": "org.{{ cookiecutter.organization }}",
+	"class_path": "{{ cookiecutter.class.replace('.', '/') }}",
+	"docker_username": "parsertongue",
+	"docker_maintainer": "Gus Hahn-Powell <gus@parsertongue.org>"
+}

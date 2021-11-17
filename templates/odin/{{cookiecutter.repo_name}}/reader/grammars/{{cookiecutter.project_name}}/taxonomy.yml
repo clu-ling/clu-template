@@ -1,0 +1,39 @@
+- Sentence:
+  - XP:
+    - VerbPhrase:
+      - Verb
+    - AdpositionalPhrase:
+      - Adposition
+    - WhPhrase
+    # NOTE: these are converted in an action to create Concepts
+    - NounPhrase:
+      - Noun
+    - Modifier
+  - Quantifier
+
+- Entity:
+  - Concept:
+    - Location
+    - RiskOf
+
+- Measurement:
+  - Unit
+  - NumericExpression:
+    - Quantity
+
+- TimeExpression:
+  - Date:
+    - Month
+    - Day:
+      # ex. 11 in 3/11/2012
+      - CalendarDay
+      # Monday, Tuesday, etc.
+      - DayOfWeek
+    - Year:
+      - FiscalYear
+  - OnTime
+  - BeforeTime
+  - AfterTime
+  - IntervalTime:
+    - ComplexIntervalTime
+  - TimeUnit

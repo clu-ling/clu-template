@@ -55,7 +55,7 @@ jobs:
 
     # test clu-template
     - name: Test clu-template
-      run: |
+      run: | # FIXME
         docker run -i "${ORG}/${IMAGE_NAME}:amd64" cookiecutter --no-input /app
     
     # build and publish
