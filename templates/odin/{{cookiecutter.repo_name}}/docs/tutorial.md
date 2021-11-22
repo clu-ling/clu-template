@@ -28,6 +28,18 @@ The main endpoint is `/api/extract`, which returns a json file of extracted ment
 
 - ??
 
+# sbt
+
+Several `command aliases` are defined in the `build.sbt`. These can be altered and added to at the developers discretion.
+
+- `copyGrammars`: Cleans and edits the source grammars to match the user-defined top level grammars.
+
+- `cleanTest`: Runs `copyGrammars` then `test`. This runs the tests on "clean" grammars.
+
+- `dockerize`: Command for generating and publishing a docker image on the "clean" grammars.
+
+- `documentize`: Generates `scaladoc` and copies documentation to the `docs/` directory.
+
 <!--- 
 - Manipulating mentions
   - python

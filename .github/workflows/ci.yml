@@ -62,19 +62,25 @@ jobs:
     
     # test python test render
     - name: Test python rendering
-      working-directory: ./test-template/?python-template-name?
+      working-directory: ./test-template/clu-temp
       run: |
         if [ $(grep -r "clu\.temp" | wc -l) != 7 ]; then exit 1; fi
     
-    # FIXME
-    # # test python template
-    # - name: Tests and coverage (clu-temp)
-    #   run: |
-    #     green -vvvv --run-coverage .
+    # Library
+    - name: "Install library (clu-temp)"
+      working-directory: ./test-templates/clu-temp
+      run: |
+        pip install wheel
+        pip install -e ".[all]"
+    # Tests
+    - name: Tests and coverage (clu-temp)
+      working-directory: ./test-templates/clu-temp
+      run: |
+        green -vvvv --run-coverage .
 
     # test odin test render
     - name: Test odin rendering
-      working-directory: ./test-template/template-reader
+      working-directory: ./test-templates/template-reader
       run: |
         if [ $(grep -r "org\.parsertongue" | wc -l) != 103 ]; then exit 1; fi
     
@@ -85,6 +91,7 @@ jobs:
         java-version: "11"
         java-package: jdk
     - name: Run tests (odin)
+      working-directory: ./test-templates/template-reader
       run: sbt cleanTest
     
     # build and publish
