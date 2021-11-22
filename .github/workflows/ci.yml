@@ -44,7 +44,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     # Library (docker)
-    - name: "Build multiarch docker image (clu-template)"
+    - name: "Build docker image (clu-template)"
       run: |
         docker build -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${{ needs.setup.outputs.sha_short }}" .
     - name: Test docker build
