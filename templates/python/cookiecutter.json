@@ -1,8 +1,8 @@
 {
     "namespace": "clu",
-    "package_name": "clu-python-template",
+    "package_name": "temp",
     "repo_organization": "clu-ling",
-    "repo_name": "{{ cookiecutter.namespace }}-{{ cookiecutter.package_name }}",    
+    "repo_name": "clu-python-template",    
     "image_organization": "parsertongue",
     "image_name": "{{ cookiecutter.repo_name }}",
     "authors": "myedibleenso,zwellington",
