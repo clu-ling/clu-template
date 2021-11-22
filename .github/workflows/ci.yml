@@ -55,32 +55,32 @@ jobs:
     
     # test clu-template
     - name: Test clu-template
-      working-directory: ./test-templates
       run: |
+        pwd
         docker run -i -v $PWD:/app "${ORG}/${IMAGE_NAME}:amd64" cookiecutter --no-input /app --directory="templates/python"
         docker run -i -v $PWD:/app "${ORG}/${IMAGE_NAME}:amd64" cookiecutter --no-input /app --directory="templates/odin"
     
     # test python test render
     - name: Test python rendering
-      working-directory: ./test-template/clu-temp
+      working-directory: ./clu-python-template
       run: |
         if [ $(grep -r "clu\.temp" | wc -l) != 7 ]; then exit 1; fi
     
     # Library
     - name: "Install library (clu-temp)"
-      working-directory: ./test-templates/clu-temp
+      working-directory: ./clu-python-template
       run: |
         pip install wheel
         pip install -e ".[all]"
     # Tests
     - name: Tests and coverage (clu-temp)
-      working-directory: ./test-templates/clu-temp
+      working-directory: ./clu-python-template
       run: |
         green -vvvv --run-coverage .
 
     # test odin test render
     - name: Test odin rendering
-      working-directory: ./test-templates/template-reader
+      working-directory: ./clu-odin-template
       run: |
         if [ $(grep -r "org\.parsertongue" | wc -l) != 103 ]; then exit 1; fi
     
@@ -91,7 +91,7 @@ jobs:
         java-version: "11"
         java-package: jdk
     - name: Run tests (odin)
-      working-directory: ./test-templates/template-reader
+      working-directory: ./clu-odin-template
       run: sbt cleanTest
     
     # build and publish

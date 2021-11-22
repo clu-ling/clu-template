@@ -1,6 +1,6 @@
 {
 	"project_name": "temp",
-	"repo_name": "{{ cookiecutter.project_name }}-reader",
+	"repo_name": "clu-odin-template",
 	"repo_organization": "clu-ling",
 	"organization": "parsertongue",
 	"class_path": "org.{{ cookiecutter.organization }}",
