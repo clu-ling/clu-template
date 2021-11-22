@@ -46,19 +46,18 @@ jobs:
     # Library (docker)
     - name: "Build multiarch docker image (clu-template)"
       run: |
-        docker buildx build --load --platform linux/amd64 -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:amd64" .
-        docker buildx build --load --platform linux/arm64 -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:arm64" .
-    - name: "Test multiarch build (clu-template)"
+        docker build -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${{ needs.setup.outputs.sha_short }}" .
+    - name: Test docker build
       run: |
-        docker run -i "${ORG}/${IMAGE_NAME}:amd64" cookiecutter --version
-        docker run -i "${ORG}/${IMAGE_NAME}:arm64" cookiecutter --version
+        docker run -i "${ORG}/${IMAGE_NAME}:latest" cookiecutter --version
     
     # test clu-template
     - name: Test clu-template
       run: |
         pwd
-        docker run -i -v $PWD:/app "${ORG}/${IMAGE_NAME}:amd64" cookiecutter --no-input /app --directory="templates/python"
-        docker run -i -v $PWD:/app "${ORG}/${IMAGE_NAME}:amd64" cookiecutter --no-input /app --directory="templates/odin"
+        docker run -i -v $PWD:/app "${ORG}/${IMAGE_NAME}:latest" cookiecutter --no-input /app --directory="templates/python"
+        docker run -i -v $PWD:/app "${ORG}/${IMAGE_NAME}:latest" cookiecutter --no-input /app --directory="templates/odin"
+        ls -1
     
     # test python test render
     # - name: Test python rendering
@@ -99,7 +98,7 @@ jobs:
       continue-on-error: true
       if: github.ref == 'refs/heads/main'
       run: |
-        docker buildx build --platform=linux/amd64,linux/arm64 -f ${DOCKERFILE} --push -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${TAG}" -t "${ORG}/${IMAGE_NAME}:${{ needs.setup.outputs.sha_short }}" .
+        docker image push --all-tags "${ORG}/${IMAGE_NAME}" 
 
     # docs
     - name: "Create documentation (other)"
