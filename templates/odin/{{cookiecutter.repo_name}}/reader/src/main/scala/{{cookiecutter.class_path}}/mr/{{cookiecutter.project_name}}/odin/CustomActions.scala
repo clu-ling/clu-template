@@ -1,9 +1,9 @@
-package {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.odin
+package {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.odin
 
 import org.clulab.odin._
-import {{ cookiecutter.class }}.mr.MentionFilter
-import {{ cookiecutter.class }}.mr.actions.OdinActions
-import {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.odin._
+import {{ cookiecutter.class_path }}.mr.MentionFilter
+import {{ cookiecutter.class_path }}.mr.actions.OdinActions
+import {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.odin._
 
 class CustomActions extends OdinActions {
 

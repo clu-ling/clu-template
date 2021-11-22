@@ -1,4 +1,4 @@
-package {{ cookiecutter.class }}.mr.utils
+package {{ cookiecutter.class_path }}.mr.utils
 
 import org.clulab.openie.ResourceUtils
 import org.clulab.odin.impl.Taxonomy

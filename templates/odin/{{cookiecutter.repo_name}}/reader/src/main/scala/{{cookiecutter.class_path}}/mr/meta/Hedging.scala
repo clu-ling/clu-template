@@ -1,4 +1,4 @@
-package {{ cookiecutter.class }}.mr.meta
+package {{ cookiecutter.class_path }}.mr.meta
 
 import org.clulab.odin._
 import org.clulab.struct.DirectedGraph

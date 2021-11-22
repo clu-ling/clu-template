@@ -1,4 +1,4 @@
-package {{ cookiecutter.class }}.mr.meta
+package {{ cookiecutter.class_path }}.mr.meta
 
 import com.typesafe.scalalogging.LazyLogging
 import org.clulab.odin._

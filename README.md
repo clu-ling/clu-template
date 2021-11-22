@@ -5,10 +5,9 @@
 ## Docker
 
 ```bash
-docker pull parsertongue/clu-template:latest
-
-docker run -i -v $PWD:/output parsertongue/clu-template:latest cookiecutter -o /output /app
+docker run -i -v $PWD:/app parsertongue/clu-template:latest cookiecutter /app --directory="templates/python"
 ```
+<!-- TO USE TEMPLATES IN GITHUB BRANCH USE: ```docker run -it -v $PWD:/app parsertongue/clu-template cookiecutter --no-input -c {BRANCH NAME} https://github.com/clu-ling/clu-template.git --directory="templates/python"``` -->
 
 ## Cookiecutter
 

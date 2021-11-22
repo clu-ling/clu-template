@@ -1,6 +1,6 @@
-package {{ cookiecutter.class }}.mr.events
+package {{ cookiecutter.class_path }}.mr.events
 
-import {{ cookiecutter.class }}.mr.OdinExtractor
+import {{ cookiecutter.class_path }}.mr.OdinExtractor
 import org.clulab.odin._
 import org.clulab.processors.Document
 

@@ -1,4 +1,4 @@
-package {{ cookiecutter.class }}.mr
+package {{ cookiecutter.class_path }}.mr
 
 import org.clulab.odin.{ Mention, State }
 import org.clulab.processors.{ Document => CluDocument }

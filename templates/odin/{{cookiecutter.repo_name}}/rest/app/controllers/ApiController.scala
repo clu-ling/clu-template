@@ -17,8 +17,8 @@ import com.typesafe.config._
 import org.clulab.serialization.json._
 import org.clulab.odin.serialization.json._
 import ai.lum.common.ConfigUtils._
-import {{ cookiecutter.class }}.mr.{ BuildInfo, MachineReadingSystem }
-import {{ cookiecutter.class }}.mr.rest.query._
+import {{ cookiecutter.class_path }}.mr.{ BuildInfo, MachineReadingSystem }
+import {{ cookiecutter.class_path }}.mr.rest.query._
 
 
 /** Handles actions related to information extraction services */

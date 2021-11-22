@@ -1,10 +1,19 @@
 {
-	"project_name": "logx",
+	"project_name": "temp",
 	"repo_name": "{{ cookiecutter.project_name }}-reader",
 	"repo_organization": "clu-ling",
-	"organization": "parsetongue",
-	"class": "org.{{ cookiecutter.organization }}",
-	"class_path": "{{ cookiecutter.class.replace('.', '/') }}",
+	"organization": "parsertongue",
+	"class_path": "org.{{ cookiecutter.organization }}",
+	"author": "Gus Hahn-Powell",
 	"docker_username": "parsertongue",
-	"docker_maintainer": "Gus Hahn-Powell <gus@parsertongue.org>"
+	"docker_maintainer": "Gus Hahn-Powell <gus@parsertongue.org>",
+	"_copy_without_render": [
+		"*.png",
+		"*.js",
+		"*.js.map",
+		"*.css",
+		"*.css.map",
+		"*.ico",
+		"*.svg"
+    ]
 }

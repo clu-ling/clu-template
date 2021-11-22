@@ -1,6 +1,6 @@
-package {{ cookiecutter.class }}.mr.entities
+package {{ cookiecutter.class_path }}.mr.entities
 
-import {{ cookiecutter.class }}.mr.InformationExtractor
+import {{ cookiecutter.class_path }}.mr.InformationExtractor
 
 
 /** Placeholder trait for specifying properties intrinsic to all EntityFinders */

@@ -1,10 +1,10 @@
-package {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.ner
+package {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.ner
 
 import ai.lum.common.FileUtils._
 import ai.lum.common.ConfigUtils._
-import {{ cookiecutter.class }}.mr.ner.{ KbEntry, KbGenerator }
-import {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.processors.CustomProcessor
-import {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.ner.CustomNerPostProcessor
+import {{ cookiecutter.class_path }}.mr.ner.{ KbEntry, KbGenerator }
+import {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.processors.CustomProcessor
+import {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.ner.CustomNerPostProcessor
 import com.typesafe.config.{ Config, ConfigFactory }
 import com.typesafe.scalalogging.LazyLogging
 import org.clulab.processors.clu.tokenizer.Tokenizer
@@ -58,7 +58,7 @@ object CustomKbGenerator extends LazyLogging {
     */
   def main (args: Array[String]) {
     // Find out which KBs are to be converted and to what labels
-    val kbConfig = config[String]("{{ cookiecutter.class }}.mr.ner.kbConfig")
+    val kbConfig = config[String]("{{ cookiecutter.class_path }}.mr.ner.kbConfig")
     val entries = generator.loadConfig(kbConfig, nameField, labelField)
 
     // Find the file path of the resource directory
@@ -66,11 +66,11 @@ object CustomKbGenerator extends LazyLogging {
     val resourceElements = Seq("reader", "src", "main", "resources")
     val resourceDir = (currentDir +: resourceElements).mkString(File.separator)
 
-    val kbRawDir = config[String]("{{ cookiecutter.class }}.mr.ner.kbRawDir")
+    val kbRawDir = config[String]("{{ cookiecutter.class_path }}.mr.ner.kbRawDir")
     val inDir    = resourceDir + File.separator + kbRawDir
     logger.info("Input directory: " + inDir)
 
-    val outDir = config[String]("{{ cookiecutter.class }}.mr.ner.kbNerDir")
+    val outDir = config[String]("{{ cookiecutter.class_path }}.mr.ner.kbNerDir")
     // val outDirLoc = resourceDir + File.separator + outDir
     // logger.info(s"Output directory: ${outDir}")
 

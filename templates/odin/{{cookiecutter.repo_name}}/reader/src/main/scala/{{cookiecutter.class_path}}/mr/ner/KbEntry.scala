@@ -1,4 +1,4 @@
-package {{ cookiecutter.class }}.mr.ner
+package {{ cookiecutter.class_path }}.mr.ner
 
 /**
   * Representation of a knowledge base and its corresponding taxonomic label.

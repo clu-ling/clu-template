@@ -1,8 +1,8 @@
-package {{ cookiecutter.class }}.mr
+package {{ cookiecutter.class_path }}.mr
 
-import {{ cookiecutter.class }}.mr.MachineReadingSystem
-import {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.odin.DisplayUtils
-//import {{ cookiecutter.class }}.mr.processor.ProxiedProcessor
+import {{ cookiecutter.class_path }}.mr.MachineReadingSystem
+import {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.odin.DisplayUtils
+//import {{ cookiecutter.class_path }}.mr.processor.ProxiedProcessor
 import org.clulab.odin.{ Mention, TextBoundMention }
 import org.clulab.serialization.json.JSONSerializer
 import org.json4s.jackson.JsonMethods.parse

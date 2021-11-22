@@ -1,6 +1,6 @@
-package {{ cookiecutter.class }}.mr.entities
+package {{ cookiecutter.class_path }}.mr.entities
 
-import {{ cookiecutter.class }}.mr.OdinExtractor
+import {{ cookiecutter.class_path }}.mr.OdinExtractor
 import org.clulab.odin.{ Action, Actions, identityAction }
 
 

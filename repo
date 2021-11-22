@@ -12,4 +12,6 @@ if __name__=="__main__":
     parser.add_argument("--template", help="which template (python/odin)")
     args = parser.parse_args()
 
+    template = os.path.join("template/", args.template)
+
     # run cookiecutter os.path.join("template/", args.template)

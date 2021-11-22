@@ -1,8 +1,8 @@
-taxonomy: {{ cookiecutter.class_path }}/reader/grammars/{{ cookiecutter.project_name }}.yml
+taxonomy: {{ cookiecutter.class_path.replace('.', '/') }}/reader/grammars/{{ cookiecutter.project_name }}.yml
 
 vars:
   # NOTE: change pathPrefix for development
-  pathPrefix: "{{ cookiecutter.class_path }}/reader/grammars/{{ cookiecutter.project_name }}"
+  pathPrefix: "{{ cookiecutter.class_path.replace('.', '/') }}/reader/grammars/{{ cookiecutter.project_name }}"
 
   agents: "nsubj|'nsubj:xsubj'|'nsubjpass:xsubj'|nsubjpass|csubj|csubjpass|<acl|nmod_along_with"
 

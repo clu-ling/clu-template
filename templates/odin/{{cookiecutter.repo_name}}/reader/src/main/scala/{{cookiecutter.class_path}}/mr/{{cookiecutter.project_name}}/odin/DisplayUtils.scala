@@ -1,4 +1,4 @@
-package {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.odin
+package {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.odin
 
 import org.clulab.odin._
 import org.clulab.processors.{ 

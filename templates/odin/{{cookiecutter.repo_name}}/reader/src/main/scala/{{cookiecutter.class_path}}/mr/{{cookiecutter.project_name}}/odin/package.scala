@@ -1,4 +1,4 @@
-package {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}
+package {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}
 
 import java.util.Collection
 
@@ -17,7 +17,7 @@ import org.clulab.processors.Document
 package object odin {
 
   // Taxonomy object
-  val taxonomy = readTaxonomy("{{ cookiecutter.class_path }}/reader/grammars/{{ cookiecutter.project_name }}/taxonomy.yml")
+  val taxonomy = readTaxonomy("{{ cookiecutter.class_path.replace('.', '/') }}/reader/grammars/{{ cookiecutter.project_name }}/taxonomy.yml")
 
   private def readTaxonomy(path: String): Taxonomy = {
     val url = getClass.getClassLoader.getResource(path)

@@ -1,4 +1,4 @@
-package {{ cookiecutter.class }}.mr.actions
+package {{ cookiecutter.class_path }}.mr.actions
 
 import org.clulab.odin._
 

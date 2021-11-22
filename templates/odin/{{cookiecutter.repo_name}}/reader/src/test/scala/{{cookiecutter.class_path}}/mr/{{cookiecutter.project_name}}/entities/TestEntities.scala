@@ -1,7 +1,7 @@
-package {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.entities
+package {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.entities
 
 //import TestUtils._
-import {{ cookiecutter.class }}.mr.TestUtils._
+import {{ cookiecutter.class_path }}.mr.TestUtils._
 import org.scalatest.{ FlatSpec, Matchers }
 
 

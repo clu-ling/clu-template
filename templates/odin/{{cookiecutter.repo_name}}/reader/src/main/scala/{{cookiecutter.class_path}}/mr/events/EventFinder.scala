@@ -1,6 +1,6 @@
-package {{ cookiecutter.class }}.mr.events
+package {{ cookiecutter.class_path }}.mr.events
 
-import {{ cookiecutter.class }}.mr.InformationExtractor
+import {{ cookiecutter.class_path }}.mr.InformationExtractor
 
 
 /** Placeholder trait for specifying properties intrinsic to all EventFinders */

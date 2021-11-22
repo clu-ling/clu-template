@@ -1,4 +1,4 @@
-package {{ cookiecutter.class }}.mr.utils
+package {{ cookiecutter.class_path }}.mr.utils
 
 import com.typesafe.scalalogging.LazyLogging
 import org.clulab.processors.{ Document, Sentence }

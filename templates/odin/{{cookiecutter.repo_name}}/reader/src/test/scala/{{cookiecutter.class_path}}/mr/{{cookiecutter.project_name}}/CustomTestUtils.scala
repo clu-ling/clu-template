@@ -1,6 +1,6 @@
-package {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}
+package {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}
 
-import {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.processors.CustomProcessor
+import {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.processors.CustomProcessor
 
 
 object CustomTestUtils {

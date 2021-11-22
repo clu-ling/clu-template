@@ -1,4 +1,4 @@
-package {{ cookiecutter.class }}.mr.ner
+package {{ cookiecutter.class_path }}.mr.ner
 
 import com.typesafe.scalalogging.LazyLogging
 
@@ -84,7 +84,7 @@ trait KbLoader extends LazyLogging {
         throw new MissingResourceException(
           "No existing serialized model is available!",
           "LexicalNER",
-          "{{ cookiecutter.class }}.mr.ner.model"
+          "{{ cookiecutter.class_path }}.mr.ner.model"
         )
     }
   }

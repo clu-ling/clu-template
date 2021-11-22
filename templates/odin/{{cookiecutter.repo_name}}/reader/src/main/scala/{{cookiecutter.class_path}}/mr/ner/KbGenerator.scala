@@ -1,9 +1,9 @@
-package {{ cookiecutter.class }}.mr.ner
+package {{ cookiecutter.class_path }}.mr.ner
 
 import ai.lum.common.FileUtils._
 
 import com.typesafe.scalalogging.LazyLogging
-import {{ cookiecutter.class }}.mr.ner.KbEntry
+import {{ cookiecutter.class_path }}.mr.ner.KbEntry
 import com.typesafe.config.{ Config, ConfigFactory }
 //import com.typesafe.scalalogging.LazyLogging
 import org.clulab.processors.clu.tokenizer.Tokenizer

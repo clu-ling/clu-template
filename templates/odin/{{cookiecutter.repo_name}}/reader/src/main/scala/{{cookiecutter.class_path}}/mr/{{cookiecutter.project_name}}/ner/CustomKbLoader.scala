@@ -1,11 +1,11 @@
-package {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.ner
+package {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.ner
 
 import ai.lum.common.ConfigUtils._
 import com.typesafe.config._
 import com.typesafe.scalalogging.LazyLogging
 import org.clulab.sequences.{ LexiconNER, NoLexicalVariations }
 import org.clulab.struct.TrueEntityValidator
-import {{ cookiecutter.class }}.mr.ner.KbLoader
+import {{ cookiecutter.class_path }}.mr.ner.KbLoader
 import java.io._
 import java.util.MissingResourceException
 import java.util.zip.{ GZIPInputStream, GZIPOutputStream }
@@ -21,10 +21,10 @@ class CustomKbLoader(val config: Config = ConfigFactory.load("reference"))
 
   /** If a serialized NER model already exists, it will be at this location */
   // FIXME: update conf
-  val nerModel: Option[String] = config.get[String]("{{ cookiecutter.class }}.mr.ner.model")
-  val kbs: Seq[String] = config[List[String]]("{{ cookiecutter.class }}.mr.ner.kbs")
-  val overrides: Option[Seq[String]] =  config.get[List[String]](s"{{ cookiecutter.class }}.mr.ner.overrides")
-  val stopListFile: Option[String] = config.get[String]("{{ cookiecutter.class }}.mr.ner.stopListFile")
+  val nerModel: Option[String] = config.get[String]("{{ cookiecutter.class_path }}.mr.ner.model")
+  val kbs: Seq[String] = config[List[String]]("{{ cookiecutter.class_path }}.mr.ner.kbs")
+  val overrides: Option[Seq[String]] =  config.get[List[String]](s"{{ cookiecutter.class_path }}.mr.ner.overrides")
+  val stopListFile: Option[String] = config.get[String]("{{ cookiecutter.class_path }}.mr.ner.stopListFile")
 
   override def nerFromKbs(): LexiconNER = LexiconNER(
       kbs,
@@ -45,7 +45,7 @@ object AgKbLoader {
     
     val loader = new CustomKbLoader()
     // resource path to export the NER model
-    val modelPath = loader.config[String]("{{ cookiecutter.class }}.mr.ner.model")
+    val modelPath = loader.config[String]("{{ cookiecutter.class_path }}.mr.ner.model")
 
     // the NER model itself
     val ner = loader.nerFromKbs()

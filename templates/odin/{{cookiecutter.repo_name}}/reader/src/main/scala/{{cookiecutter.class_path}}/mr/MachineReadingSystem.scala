@@ -1,13 +1,13 @@
-package {{ cookiecutter.class }}.mr
+package {{ cookiecutter.class_path }}.mr
 
 import ai.lum.common.ConfigUtils._
-import {{ cookiecutter.class }}.mr.processors.ProxiedProcessor
-import {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.processors.CustomProcessor
-import {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.odin.CustomActions
-import {{ cookiecutter.class }}.mr.entities.{ EntityFinder, OdinEntityFinder }
-import {{ cookiecutter.class }}.mr.events.{ EventFinder, OdinEventFinder }
-import {{ cookiecutter.class }}.mr.meta.{ Hedging, Negation }
-import {{ cookiecutter.class }}.mr.utils.{ RuleUtils }
+import {{ cookiecutter.class_path }}.mr.processors.ProxiedProcessor
+import {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.processors.CustomProcessor
+import {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.odin.CustomActions
+import {{ cookiecutter.class_path }}.mr.entities.{ EntityFinder, OdinEntityFinder }
+import {{ cookiecutter.class_path }}.mr.events.{ EventFinder, OdinEventFinder }
+import {{ cookiecutter.class_path }}.mr.meta.{ Hedging, Negation }
+import {{ cookiecutter.class_path }}.mr.utils.{ RuleUtils }
 import com.typesafe.config.{ Config, ConfigFactory }
 import com.typesafe.scalalogging.LazyLogging
 import org.clulab.odin.{ Action, Actions, Mention, State }
@@ -22,17 +22,17 @@ import scala.util.{ Failure, Success, Try }
   */
 class MachineReadingSystem(val config: Config) extends LazyLogging {
 
-  var entityFinderName: String   = config[String]("{{ cookiecutter.class }}.mr.entities.entityFinder.name")
-  var entityRulesPath: String    = config[String]("{{ cookiecutter.class }}.mr.entities.entityFinder.rulesPath")
+  var entityFinderName: String   = config[String]("{{ cookiecutter.class_path }}.mr.entities.entityFinder.name")
+  var entityRulesPath: String    = config[String]("{{ cookiecutter.class_path }}.mr.entities.entityFinder.rulesPath")
 
-  var eventFinderName: String    = config[String]("{{ cookiecutter.class }}.mr.events.eventFinder.name")
-  var eventRulesPath: String     = config[String]("{{ cookiecutter.class }}.mr.events.eventFinder.rulesPath")
+  var eventFinderName: String    = config[String]("{{ cookiecutter.class_path }}.mr.events.eventFinder.name")
+  var eventRulesPath: String     = config[String]("{{ cookiecutter.class_path }}.mr.events.eventFinder.rulesPath")
 
 
-  val rulesPrefix = config[String]("{{ cookiecutter.class }}.mr.rulesPrefix")
+  val rulesPrefix = config[String]("{{ cookiecutter.class_path }}.mr.rulesPrefix")
 
   val taxonomy: Taxonomy = RuleUtils.readTaxonomy(s"${rulesPrefix}/taxonomy.yml")
-  lazy val proc: Processor = mkProcessor(config[String]("{{ cookiecutter.class }}.mr.processor"))
+  lazy val proc: Processor = mkProcessor(config[String]("{{ cookiecutter.class_path }}.mr.processor"))
 
   var entityFinder: EntityFinder = mkEntityFinder(entityFinderName)
   var eventFinder: EventFinder   = mkEventFinder(eventFinderName)
@@ -50,7 +50,7 @@ class MachineReadingSystem(val config: Config) extends LazyLogging {
 
     procName match {
       // FIXME: retrieve URL from conf and pass to ProxiedProcessor
-      case "ProxiedProcessor"       => new ProxiedProcessor(config[String]("{{ cookiecutter.class }}.mr.proxiedProcessorUrl"))
+      case "ProxiedProcessor"       => new ProxiedProcessor(config[String]("{{ cookiecutter.class_path }}.mr.proxiedProcessorUrl"))
       case "CluProcessor"           => new CluProcessor
       case "{{ cookiecutter.project_name }}"                   => new CustomProcessor
       case _                        => throw new Exception(s"Unsupported Processor '$procName'")
@@ -66,19 +66,19 @@ class MachineReadingSystem(val config: Config) extends LazyLogging {
 
         val actions: Actions = {
           //val loader = ClassLoader.getSystemClassLoader
-          Class.forName(config[String]("{{ cookiecutter.class }}.mr.entities.entityFinder.actions")).newInstance().asInstanceOf[Actions]
+          Class.forName(config[String]("{{ cookiecutter.class_path }}.mr.entities.entityFinder.actions")).newInstance().asInstanceOf[Actions]
          }
 
         // FIXME: this shouldn't be required to be an action in .actions
         val globalAction: Action = {
-          val actionName = config[String]("{{ cookiecutter.class }}.mr.entities.entityFinder.globalAction")
+          val actionName = config[String]("{{ cookiecutter.class_path }}.mr.entities.entityFinder.globalAction")
           val am = new org.clulab.odin.impl.ActionMirror(actions)
           am.reflect(actionName)
         }
 
         // Runs exactly once after extractor engine has finished
         val finalAction: Action = {
-          val actionName = config[String]("{{ cookiecutter.class }}.mr.entities.entityFinder.finalAction")
+          val actionName = config[String]("{{ cookiecutter.class_path }}.mr.entities.entityFinder.finalAction")
           val am = new org.clulab.odin.impl.ActionMirror(actions)
           am.reflect(actionName)
         }
@@ -105,18 +105,18 @@ class MachineReadingSystem(val config: Config) extends LazyLogging {
         println(s"${rules}")
         val actions: Actions = {
           val loader = ClassLoader.getSystemClassLoader
-          Class.forName(config[String]("{{ cookiecutter.class }}.mr.events.eventFinder.actions")).newInstance().asInstanceOf[Actions]
+          Class.forName(config[String]("{{ cookiecutter.class_path }}.mr.events.eventFinder.actions")).newInstance().asInstanceOf[Actions]
         }
 
         // FIXME: this shouldn't be required to be an action in .actions
         val globalAction: Action = {
-          val actionName = config[String]("{{ cookiecutter.class }}.mr.events.eventFinder.globalAction")
+          val actionName = config[String]("{{ cookiecutter.class_path }}.mr.events.eventFinder.globalAction")
           val am = new org.clulab.odin.impl.ActionMirror(actions)
           am.reflect(actionName)
         }
 
         val finalAction: Action = {
-          val actionName = config[String]("{{ cookiecutter.class }}.mr.events.eventFinder.finalAction")
+          val actionName = config[String]("{{ cookiecutter.class_path }}.mr.events.eventFinder.finalAction")
           val am = new org.clulab.odin.impl.ActionMirror(actions)
           am.reflect(actionName)
         }

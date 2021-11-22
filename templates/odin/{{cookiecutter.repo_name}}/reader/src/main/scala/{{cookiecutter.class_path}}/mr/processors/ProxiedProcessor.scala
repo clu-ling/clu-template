@@ -1,4 +1,4 @@
-package {{ cookiecutter.class }}.mr.processors
+package {{ cookiecutter.class_path }}.mr.processors
 
 import org.clulab.processors.{ Document => CluDocument, Processor, Sentence }
 import org.clulab.serialization.json.JSONSerializer 

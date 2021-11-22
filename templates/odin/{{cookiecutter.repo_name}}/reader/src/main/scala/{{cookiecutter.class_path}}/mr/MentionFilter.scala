@@ -1,9 +1,9 @@
-package {{ cookiecutter.class }}.mr
+package {{ cookiecutter.class_path }}.mr
 
 import ai.lum.common.ConfigUtils._
 import com.typesafe.config.{ Config, ConfigFactory }
 import org.clulab.odin.{ Mention, TextBoundMention, RelationMention, EventMention, State }
-import {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.odin._
+import {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.odin._
 
 /**
   * Filtering utilities/checks for evaluating the quality of Mentions. <br>
@@ -12,11 +12,11 @@ object MentionFilter {
 
   val config: Config = ConfigFactory.load()
 
-  val minChars: Int = config[Int]("{{ cookiecutter.class }}.mr.mentionFilter.meetsMinLength.minChars")
+  val minChars: Int = config[Int]("{{ cookiecutter.class_path }}.mr.mentionFilter.meetsMinLength.minChars")
 
-  val maxArgDistance: Int = config[Int]("{{ cookiecutter.class }}.mr.mentionFilter.maxArgDistance")
+  val maxArgDistance: Int = config[Int]("{{ cookiecutter.class_path }}.mr.mentionFilter.maxArgDistance")
 
-  val exceptions: Set[String] = config[List[String]]("{{ cookiecutter.class }}.mr.mentionFilter.meetsMinLength.exceptions").toSet
+  val exceptions: Set[String] = config[List[String]]("{{ cookiecutter.class_path }}.mr.mentionFilter.meetsMinLength.exceptions").toSet
 
   // labels (categories) to retain
   val CATEGORIES: Seq[String] = Seq(

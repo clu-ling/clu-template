@@ -1,4 +1,4 @@
-package {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.ner
+package {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.ner
 
 import org.clulab.processors.clu.SentencePostProcessor
 import org.clulab.processors.Sentence

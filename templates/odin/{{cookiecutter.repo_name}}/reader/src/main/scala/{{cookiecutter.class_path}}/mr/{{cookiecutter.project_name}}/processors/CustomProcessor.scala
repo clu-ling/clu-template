@@ -1,6 +1,6 @@
-package {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.processors
+package {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.processors
 
-import {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.ner.CustomKbLoader
+import {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.ner.CustomKbLoader
 import com.typesafe.config.{ Config, ConfigFactory }
 import com.typesafe.scalalogging.LazyLogging
 import org.clulab.dynet
@@ -12,7 +12,7 @@ import org.clulab.processors.shallownlp.ShallowNLPProcessor
 import org.clulab.sequences.Tagger
 import org.clulab.struct.{ DirectedGraph, Edge, GraphMap }
 import org.clulab.utils.Configured
-import {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.ner.CustomNerPostProcessor
+import {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.ner.CustomNerPostProcessor
 
 import scala.util.{ Failure, Success, Try }
 

@@ -1,7 +1,7 @@
-package {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.processors
+package {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.processors
 
 import org.clulab.struct.GraphMap
-import {{ cookiecutter.class }}.mr.{{ cookiecutter.project_name }}.CustomTestUtils._
+import {{ cookiecutter.class_path }}.mr.{{ cookiecutter.project_name }}.CustomTestUtils._
 import org.scalatest.{ FlatSpec, Matchers }
 
 

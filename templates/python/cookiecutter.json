@@ -1,7 +1,7 @@
 {
     "namespace": "clu",
-    "package_name": "template",
-    "repo_organization": "clu-ling",    
+    "package_name": "temp",
+    "repo_organization": "clu-ling",
     "repo_name": "{{ cookiecutter.namespace }}-{{ cookiecutter.package_name }}",    
     "image_organization": "parsertongue",
     "image_name": "{{ cookiecutter.repo_name }}",
