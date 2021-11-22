@@ -61,10 +61,10 @@ jobs:
         docker run -i -v $PWD:/app "${ORG}/${IMAGE_NAME}:amd64" cookiecutter --no-input /app --directory="templates/odin"
     
     # test python test render
-    - name: Test python rendering
-      working-directory: ./clu-python-template
-      run: |
-        if [ $(grep -r "clu\.temp" | wc -l) != 7 ]; then exit 1; fi
+    # - name: Test python rendering
+    #   working-directory: ./clu-python-template
+    #   run: |
+    #     if [ $(grep -r "clu\.temp" | wc -l) != 7 ]; then exit 1; fi
     
     # Library
     - name: "Install library (clu-temp)"
@@ -79,10 +79,10 @@ jobs:
         green -vvvv --run-coverage .
 
     # test odin test render
-    - name: Test odin rendering
-      working-directory: ./clu-odin-template
-      run: |
-        if [ $(grep -r "org\.parsertongue" | wc -l) != 103 ]; then exit 1; fi
+    # - name: Test odin rendering
+    #   working-directory: ./clu-odin-template
+    #   run: |
+    #     if [ $(grep -r "org\.parsertongue" | wc -l) != 103 ]; then exit 1; fi
     
     # JDK 11 and tests
     - name: Set up JDK 11
