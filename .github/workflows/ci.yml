@@ -70,7 +70,7 @@ jobs:
       working-directory: ./clu-python-template
       run: |
         pip install wheel
-        chmod -R 777 ./
+        sudo chmod -R 777 ./
         pip install -e ".[all]"
     # Tests
     - name: Tests and coverage (clu-temp)
