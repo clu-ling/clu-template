@@ -18,7 +18,7 @@ We use [ScalaTest with `FlatSpec` and `Matchers`](https://www.scalatest.org/user
 
 - Entity tests: `reader/src/test/scala/{{ cookiecutter.class_path.replace('.', '/') }}/mr/{{ cookiecutter.project_name }}/entities`
 
-- Event/relation tests: `reader/src/test/scala/o{{ cookiecutter.class_path.replace('.', '/') }}/mr/{{ cookiecutter.project_name }}/events`
+- Event/relation tests: `reader/src/test/scala/{{ cookiecutter.class_path.replace('.', '/') }}/mr/{{ cookiecutter.project_name }}/events`
 
 
 
