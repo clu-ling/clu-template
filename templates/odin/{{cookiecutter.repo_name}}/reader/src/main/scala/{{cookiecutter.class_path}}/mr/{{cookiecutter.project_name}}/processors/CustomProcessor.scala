@@ -101,3 +101,4 @@ class CustomProcessor(
       sentence.graphs += GraphMap.SEMANTIC_ROLES -> srlGraph
     }
   }
+}
