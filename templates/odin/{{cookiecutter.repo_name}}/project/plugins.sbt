@@ -11,6 +11,6 @@ addSbtPlugin("org.clapper" % "sbt-editsource" % "1.0.0")
 addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.3.2")
 addSbtPlugin("com.typesafe.sbt" % "sbt-ghpages" % "0.6.2")
 
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.7")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.8.8")
 
 addSbtPlugin("com.frugalmechanic" % "fm-sbt-s3-resolver" % "0.16.0")
