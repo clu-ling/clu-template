@@ -18,8 +18,6 @@ import org.clulab.serialization.json._
 import org.clulab.odin.serialization.json._
 import ai.lum.common.ConfigUtils._
 import {{ cookiecutter.class_path }}.mr.{ BuildInfo, MachineReadingSystem }
-import {{ cookiecutter.class_path }}.mr.rest.query._
-
 
 /** Handles actions related to information extraction services */
 @Singleton
@@ -96,23 +94,6 @@ class ApiController @Inject() (
   def getMentions(text: String): Seq[Mention] = {
     ieSystem.reload()
     ieSystem.extract(text)
-  }
-
-  def parseQuery(text: String, pretty: Option[Boolean] = None) = Action.async {
-    Future {
-      try {
-        val queryMentions = getMentions(text).filter(_ matches "Query")
-        val json: String  = QueryUtils.toQueries(queryMentions).json(pretty=false)
-        val playJson      = Json.parse(json)
-        //Ok(playJson)
-        playJson.format(pretty)
-      } catch {
-          case NonFatal(e) =>
-            val stackTrace = ExceptionUtils.getStackTrace(e)
-            val json = Json.toJson(Json.obj("error" -> stackTrace))
-            Status(400)(json)
-      }
-    }
   }
 
   /** Apply MachineReadingSystem and return Mention json (for use with TAG).
