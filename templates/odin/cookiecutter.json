@@ -4,6 +4,7 @@
 	"repo_organization": "clu-ling",
 	"organization": "parsertongue",
 	"class_path": "org.{{ cookiecutter.organization }}",
+	"_class_dir": "{{ cookiecutter.class_path.replace('.','/') }}",
 	"author": "Gus Hahn-Powell",
 	"docker_username": "parsertongue",
 	"docker_maintainer": "Gus Hahn-Powell <gus@parsertongue.org>",

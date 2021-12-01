@@ -1,8 +1,8 @@
-taxonomy: {{ cookiecutter.class_path.replace('.', '/') }}/reader/grammars/{{ cookiecutter.project_name }}/taxonomy.yml
+taxonomy: {{ cookiecutter._class_dir }}/reader/grammars/{{ cookiecutter.project_name }}/taxonomy.yml
 
 vars:
   # NOTE: change pathPrefix for development
-  pathPrefix: "{{ cookiecutter.class_path.replace('.', '/') }}/reader/grammars/{{ cookiecutter.project_name }}"
+  pathPrefix: "{{ cookiecutter._class_dir }}/reader/grammars/{{ cookiecutter.project_name }}"
   wh-words-en: "how|that|what|whatever|when|whenever|where|which|who|whoever|whom|whose|why"
 
 rules:
