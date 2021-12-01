@@ -91,7 +91,7 @@ jobs:
         java-package: jdk
     - name: Run tests (odin)
       working-directory: ./clu-odin-template
-      run: sbt cleanTest
+      run: sudo sbt cleanTest
     
     # build and publish
     - name: "Publish docker image (cookiecutter image)"

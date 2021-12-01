@@ -126,5 +126,3 @@ For feature requests and bug reports, please open an issue.
 ## Authors
 
 - [Gus Hahn-Powell](https://parsertongue.org/about)
-
->>>>>>> 7118fc1c8d26346e81d2553810994a1a4ff705e9
