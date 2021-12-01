@@ -90,7 +90,8 @@ lazy val reader = (project in file("reader"))
 
 val gitDockerTag = settingKey[String]("Git commit-based tag for docker")
 ThisBuild / gitDockerTag := {
-  val shortHash: String = git.gitHeadCommit.value.get.take(7)  
+  // FIXME: git.gitHeadCommit.value returns None on fresh template, sbt compile error 
+  val shortHash: String = "33" // git.gitHeadCommit.value.get.take(7)  
   val uncommittedChanges: Boolean = (git.gitUncommittedChanges).value
   s"""${shortHash}${if (uncommittedChanges) "-DIRTY" else ""}"""
 }
@@ -128,7 +129,7 @@ lazy val webapp = (project in file("rest"))
   .settings(buildInfoSettings)
   .settings(assemblySettings)
   .settings(
-    mainClass in assembly := Some("play.core.server.ProdServerStart"), // FIXME template, is this core subproject?
+    mainClass in assembly := Some("play.core.server.ProdServerStart"),
     fullClasspath in assembly += Attributed.blank(PlayKeys.playPackageAssets.value)
   )
 
