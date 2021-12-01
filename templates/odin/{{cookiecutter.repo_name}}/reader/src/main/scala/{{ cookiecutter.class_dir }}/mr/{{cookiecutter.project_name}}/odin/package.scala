@@ -17,7 +17,7 @@ import org.clulab.processors.Document
 package object odin {
 
   // Taxonomy object
-  val taxonomy = readTaxonomy("{{ cookiecutter._class_dir }}/reader/grammars/{{ cookiecutter.project_name }}/taxonomy.yml")
+  val taxonomy = readTaxonomy("{{ cookiecutter.class_dir }}/reader/grammars/{{ cookiecutter.project_name }}/taxonomy.yml")
 
   private def readTaxonomy(path: String): Taxonomy = {
     val url = getClass.getClassLoader.getResource(path)

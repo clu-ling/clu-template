@@ -16,9 +16,9 @@ sbt test
 
 We use [ScalaTest with `FlatSpec` and `Matchers`](https://www.scalatest.org/user_guide/using_matchers) for BDD-style unit tests.  
 
-- Entity tests: `reader/src/test/scala/{{ cookiecutter._class_dir }}/mr/{{ cookiecutter.project_name }}/entities`
+- Entity tests: `reader/src/test/scala/{{ cookiecutter.class_dir }}/mr/{{ cookiecutter.project_name }}/entities`
 
-- Event/relation tests: `reader/src/test/scala/o{{ cookiecutter._class_dir }}/mr/{{ cookiecutter.project_name }}/events`
+- Event/relation tests: `reader/src/test/scala/o{{ cookiecutter.class_dir }}/mr/{{ cookiecutter.project_name }}/events`
 
 
 
@@ -127,3 +127,9 @@ For feature requests and bug reports, please open an issue.
 ## Authors
 
 - [Gus Hahn-Powell](https://parsertongue.org/about)
+
+<!--
+ ```json
+ {{ cookiecutter | jsonify }}
+ ```
+>

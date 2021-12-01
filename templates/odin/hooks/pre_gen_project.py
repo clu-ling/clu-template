@@ -1,3 +1,7 @@
+'''
+{{ cookiecutter.update({"class_dir": cookiecutter.class_path|replace('.', '/')}) }}
+'''
+
 import sys
 import requests
 
