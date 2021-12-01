@@ -24,6 +24,7 @@
   pattern: |
     @subtype:Modifier+
     @core:Concept
+    
 - name: concept-coord-mod
   label: Concept
   priority: 4
