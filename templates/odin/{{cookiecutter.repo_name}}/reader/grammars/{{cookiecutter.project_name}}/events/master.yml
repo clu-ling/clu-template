@@ -1,4 +1,4 @@
-taxonomy: {{ cookiecutter.class_path.replace('.', '/') }}/reader/grammars/{{ cookiecutter.project_name }}.yml
+taxonomy: {{ cookiecutter.class_path.replace('.', '/') }}/reader/grammars/{{ cookiecutter.project_name }}/taxonomy.yml
 
 vars:
   # NOTE: change pathPrefix for development

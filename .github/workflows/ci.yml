@@ -75,7 +75,7 @@ jobs:
     - name: Tests and coverage (clu-temp)
       working-directory: ./clu-python-template
       run: |
-        green -vvvv --run-coverage .
+        sudo green -vvvv --run-coverage .
 
     # test odin test render
     # - name: Test odin rendering

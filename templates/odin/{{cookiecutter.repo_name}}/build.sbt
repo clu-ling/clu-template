@@ -104,7 +104,7 @@ lazy val packagerSettings = {
       dockerAlias.value.withTag(Option(gitDockerTag.value)),
       // see https://github.com/sbt/sbt-native-packager/blob/master/src/main/scala/com/typesafe/sbt/packager/docker/DockerAlias.scala
     ),
-    packageName in Docker := "{{ cookiecutter.repo_name }}-rest-api", // ex: "logx-reader-rest-api"
+    packageName in Docker := "{{ cookiecutter.repo_name }}-rest-api", // ex: "{{ cookiecutter.project_name }}-reader-rest-api"
     // "openjdk:11-jre-alpine"
     dockerBaseImage := "openjdk:11",
     maintainer in Docker := "{{ cookiecutter.docker_maintainer }}",

@@ -39,7 +39,7 @@ services:
 To run the {{ cookiecutter.repo_name }} REST API in development mode, run the following command under the `{{ cookiecutter.repo_name }}` directory to redirect to the external grammars:
 
 ```bash
-RULES_PREFIX=file://$HOME/repos/{{ cookiecutter.repo_organization }}/{{ cookiecutter.repo_name }}/reader/grammars/logx sbt web
+RULES_PREFIX=file://$HOME/repos/{{ cookiecutter.repo_organization }}/{{ cookiecutter.repo_name }}/reader/grammars/{{ cookiecutter.project_name }} sbt web
 ```
 
 Open your browser to [localhost:9000](http://localhost:9000).
