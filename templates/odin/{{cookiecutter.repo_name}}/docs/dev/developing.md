@@ -8,7 +8,7 @@ Before developing a new rule or set of related rules, it is best to first define
 
 Rules in the `{{ cookiecutter.repo_name }}` are defined using Odin. For an in depth look at Odin and writing a grammar, please see the [manual](https://arxiv.org/pdf/1509.07513.pdf).
 
-The `{{ cookiecutter.repo_name }}` has two grammars, `entities` and `events`. The grammars can be found under `reader/grammars/logx`. An identical set of grammars can be found under `reader/src/main/resources/org/parsertongue/reader/grammars/logx`, however, when developing the grammars the user should only modify the top level grammars. These will later be edited and copied to the `src` grammars via action.
+The `{{ cookiecutter.repo_name }}` has two grammars, `entities` and `events`. The grammars can be found under `reader/grammars/{{ cookiecutter.project_name }}`. An identical set of grammars can be found under `reader/src/main/resources/org/parsertongue/reader/grammars/{{ cookiecutter.project_name }}`, however, when developing the grammars the user should only modify the top level grammars. These will later be edited and copied to the `src` grammars via action.
 
 Rules can be developed with live reloading following the instructions in the [Development/Install](./install.md) section.
 
@@ -69,4 +69,4 @@ A sample of the `{{ cookiecutter.repo_name }}` taxonomy can be seen here:
 
 ## Actions
 
-Generally, when developing rules there should be no need to change the existing actions. However, if it is necessary, new actions or modifications to existing actions can be made in [`reader/src/main/scala/org/parsertongue/mr/logx/odin/LogxActions.scala`](https://github.com/clu-ling/{{ cookiecutter.repo_name }}/blob/master/reader/src/main/scala/org/parsertongue/mr/logx/odin/LogxActions.scala). For more information about actions, see [How it Works](./howitworks.md).
+Generally, when developing rules there should be no need to change the existing actions. However, if it is necessary, new actions or modifications to existing actions can be made in [`reader/src/main/scala/org/parsertongue/mr/{{ cookiecutter.project_name }}/odin/CustomActions.scala`](https://github.com/clu-ling/{{ cookiecutter.repo_name }}/blob/master/reader/src/main/scala/org/parsertongue/mr/{{ cookiecutter.project_name }}/odin/CustomActions.scala). For more information about actions, see [How it Works](./howitworks.md).

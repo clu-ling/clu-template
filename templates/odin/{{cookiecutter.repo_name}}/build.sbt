@@ -104,7 +104,7 @@ lazy val packagerSettings = {
       dockerAlias.value.withTag(Option(gitDockerTag.value)),
       // see https://github.com/sbt/sbt-native-packager/blob/master/src/main/scala/com/typesafe/sbt/packager/docker/DockerAlias.scala
     ),
-    packageName in Docker := "{{ cookiecutter.repo_name }}-rest-api", // ex: "logx-reader-rest-api"
+    packageName in Docker := "{{ cookiecutter.repo_name }}-rest-api", // ex: "{{ cookiecutter.project_name }}-reader-rest-api"
     // "openjdk:11-jre-alpine"
     dockerBaseImage := "openjdk:11",
     maintainer in Docker := "{{ cookiecutter.docker_maintainer }}",
@@ -141,7 +141,7 @@ lazy val editGrammars = taskKey[Unit]("Copies and modifies grammars for reading 
 // FIXME: These settings are only picked up if they are left top-level
 flatten in EditSource := false
 // change pathPrefix in grammars to read from resources
-substitutions in EditSource += sub("""pathPrefix: .*$""".r, "pathPrefix: \"{{ cookiecutter.class_path.replace('.', '/') }}/reader/grammars/{{ cookiecutter.project_name }}\"")
+substitutions in EditSource += sub("""pathPrefix: .*$""".r, "pathPrefix: \"{{ cookiecutter._class_dir }}/reader/grammars/{{ cookiecutter.project_name }}\"")
 
 variables in EditSource += "actionFlow" -> "DOLLAR{actionFlow}"
 variables in EditSource += "agents" -> "DOLLAR{agents}"
@@ -162,7 +162,7 @@ variables in EditSource += "trigger" -> "DOLLAR{trigger}"
 substitutions in EditSource += sub("""DOLLAR[{]""".r, """\${""", SubAll)
 
 (sources in EditSource) ++= (baseDirectory.value / "reader"/ "grammars" ** "*.yml").get
-{% set class_list = cookiecutter.class_path.replace('.', '/').split('/') %}
+{% set class_list = cookiecutter._class_dir.split('/') %}
 {% if class_list|length > 1%}
 targetDirectory in EditSource := (baseDirectory.value / "reader" / "src" / "main" / "resources" / {% for i in range(class_list|length-1) %} "{{ class_list[i] }}" / {% endfor %} "{{ class_list|last }}")
 {% else %}

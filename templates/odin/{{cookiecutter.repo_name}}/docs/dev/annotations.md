@@ -7,11 +7,11 @@ The rules defined in the `{{ cookiecutter.repo_name }}` grammars are run over an
 Currently there are three processors avalaible to the REST API: `Custom`, `CluProcessor`, and `ProxiedProcessor`. 
 
 ### `CustomProcessor`
-The `Custom` processor uses a mixture of components from the [`clulab/processors`](https://github.com/clu-ling/{{ cookiecutter.repo_name }}/blob/master/reader/src/main/scala/org/parsertongue/mr/logx/processors/LogxProcessor.scala) library with custom pre- and post-processing hooks.  
+The `Custom` processor uses a mixture of components from the [`clulab/processors`](https://github.com/clu-ling/{{ cookiecutter.repo_name }}/blob/master/reader/src/main/scala/{{ cookiecutter.class_path.replace('.','/') }}/mr/{{ cookiecutter.project_name }}/processors/CustomProcessor.scala) library with custom pre- and post-processing hooks.  
 
 ### `CluProcessor` 
 `CluProcessor` comes directly from [`clulab/processors`](https://github.com/clulab/processors/blob/master/main/src/main/resources/cluprocessor.conf). 
 
 ### `ProxiedProcessor`
 
-The `ProxiedProcessor` performs annotation via REST calls and allowing the user to easily mix components written in different programming languages.  The `ProxiedProcessor` is defined in [`reader/src/main/scala/org/parsertongue/mr/processors`](https://github.com/clu-ling/{{ cookiecutter.repo_name }}/blob/master/reader/src/main/scala/org/parsertongue/mr/processors/ProxiedProcessor.scala). One can use [SpaCy](https://spacy.io/) for annotation via the [`clu-spacy` library](https://github.com/clu-ling/clu-spacy)).
+The `ProxiedProcessor` performs annotation via REST calls and allowing the user to easily mix components written in different programming languages.  The `ProxiedProcessor` is defined in [`reader/src/main/scala/{{ cookiecutter.class_path.replace('.','/') }}/mr/processors`](https://github.com/clu-ling/{{ cookiecutter.repo_name }}/blob/master/reader/src/main/scala/{{ cookiecutter.class_path.replace('.','/') }}/mr/processors/ProxiedProcessor.scala). One can use [SpaCy](https://spacy.io/) for annotation via the [`clu-spacy` library](https://github.com/clu-ling/clu-spacy)).
