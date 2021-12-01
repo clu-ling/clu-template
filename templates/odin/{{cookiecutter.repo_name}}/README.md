@@ -17,12 +17,7 @@ sbt test
 We use [ScalaTest with `FlatSpec` and `Matchers`](https://www.scalatest.org/user_guide/using_matchers) for BDD-style unit tests.  
 
 - Entity tests: `reader/src/test/scala/{{ cookiecutter.class_dir }}/mr/{{ cookiecutter.project_name }}/entities`
-
-<<<<<<< HEAD
-- Event/relation tests: `reader/src/test/scala/o{{ cookiecutter.class_dir }}/mr/{{ cookiecutter.project_name }}/events`
-=======
-- Event/relation tests: `reader/src/test/scala/{{ cookiecutter.class_path.replace('.', '/') }}/mr/{{ cookiecutter.project_name }}/events`
->>>>>>> 7118fc1c8d26346e81d2553810994a1a4ff705e9
+- Event/relation tests: `reader/src/test/scala/{{ cookiecutter.class_dir }}/mr/{{ cookiecutter.project_name }}/events`
 
 
 
