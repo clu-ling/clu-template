@@ -1,6 +1,6 @@
 # Testing
 
-Tests are written by [extending the `TestCase` class](https://docs.python.org/3.7/library/unittest.html#unittest.TestCase) from the `unittest` module in the Python standard library.  All tests can be found in the [`tests`](./tests) directory.
+Tests are written by [extending the `TestCase` class](https://docs.python.org/3.8/library/unittest.html#unittest.TestCase) from the `unittest` module in the Python standard library.  All tests can be found in the [`tests`](./tests) directory.
 
 {% if cookiecutter.include_docker_ci == 'y' %}
 ## Docker
