@@ -12,7 +12,7 @@ with open("requirements.txt", "r") as f:
 with open("README.md", "r") as f:
     readme = f.read()
 
-test_deps = required + + ["green==3.3.0", "coverage==6.2", "mypy==0.931"]
+test_deps = required + ["green==3.3.0", "coverage==6.2", "mypy==0.931"]
 # NOTE: <packagename> @ allows installation of git-based URLs
 dev_deps = test_deps + [
     "black==21.12b0",
