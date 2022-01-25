@@ -1,0 +1,19 @@
+{
+	"project_name": "temp",
+	"repo_name": "clu-odin-template",
+	"repo_organization": "clu-ling",
+	"organization": "parsertongue",
+	"class_path": "org.{{ cookiecutter.organization }}",
+	"author": "Gus Hahn-Powell",
+	"docker_username": "parsertongue",
+	"docker_maintainer": "Gus Hahn-Powell <gus@parsertongue.org>",
+	"_copy_without_render": [
+		"*.png",
+		"*.js",
+		"*.js.map",
+		"*.css",
+		"*.css.map",
+		"*.ico",
+		"*.svg"
+    ]
+}

@@ -11,4 +11,4 @@ RUN pip install -U \
     pip \
     cookiecutter==1.7.3
 
-CMD ["cookiecutter", "--no-input", "https://github.com/clu-ling/clu-template"]
+CMD ["cookiecutter", "--no-input", "/app", "--directory='templates/python'"]

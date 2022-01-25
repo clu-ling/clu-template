@@ -1,0 +1,41 @@
+- name: base-concept
+  label: Concept
+  priority: 1
+  type: token
+  pattern: |
+    [tag=/^NNS?$/] 
+    |
+    [entity=/^B\-(LOC|ORG|PER)$/] [entity=/^I\-(LOC|ORG|PER)$/]*
+    |
+    [tag=/^NNP/]+
+    
+- name: base-modifier
+  label: Modifier
+  type: token
+  pattern: |
+    # Any JJ or Concept in a sequence of JJs and Concepts (not last)
+    [tag=/^JJ/ & !word=/(?i)^(many|several|alternative|much)/]
+    |
+    @Concept (?=[lemma=","]? [lemma=and]? (@Concept|[tag=/^JJ/]))
+
+- name: concept-serial-mod
+  label: Concept
+  type: token
+  pattern: |
+    @subtype:Modifier+
+    @core:Concept
+    
+- name: concept-coord-mod
+  label: Concept
+  priority: 4
+  pattern: |
+    core:Concept
+    # subtype:Modifier = (>> | (<< >>?)) [!mention=Concept.subtype]
+    subtype:Modifier = (>amod | (<conj_and >conj_and?) | >compound) [!mention=Concept.subtype]
+    
+- name: "verb"
+  label: Verb
+  type: token
+  unit: tag
+  pattern: |
+    /^V/

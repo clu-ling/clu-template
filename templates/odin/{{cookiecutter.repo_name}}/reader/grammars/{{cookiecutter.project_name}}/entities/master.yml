@@ -1,0 +1,46 @@
+taxonomy: {{ cookiecutter.class_dir }}/reader/grammars/{{ cookiecutter.project_name }}/taxonomy.yml
+
+vars:
+  # NOTE: change pathPrefix for development
+  pathPrefix: "{{ cookiecutter.class_dir }}/reader/grammars/{{ cookiecutter.project_name }}"
+  wh-words-en: "how|that|what|whatever|when|whenever|where|which|who|whoever|whom|whose|why"
+
+rules:
+
+  - name: "loc-ner"
+    label: Location
+    type: token
+    pattern: |
+      [entity="B-LOC"]
+      [entity="I-LOC"]*
+      [word=/^\,$/]? 
+      [word=/^[A-Z]{2}$/]?
+      #last 2 lines allow for things like "Hamburg, DE"; "Tucson, AZ"
+
+  # https://en.wikipedia.org/wiki/Twenty-foot_equivalent_unit
+  - name: "units"
+    label: Unit
+    priority: 1
+    type: token
+    pattern: |
+      [lemma=/(?i)^(metric)$/]? [lemma=/(?i)^(TEU|ton|pound|kg)s?$/]
+
+  - name: "quantity-1"
+    label: Quantity
+    priority: 2
+    pattern: |
+      unit:Unit 
+      quantity:NumericExpression = >nummod      
+
+  - name: "numeric-expression"
+    label: NumericExpression
+    priority: 1
+    type: token
+    pattern: |
+      [tag=CD]
+      |
+      [word=/^\d+(?i)k/]
+
+  - import: ${pathPrefix}/entities/xp.yml
+
+  - import: ${pathPrefix}/entities/time-expressions.yml
