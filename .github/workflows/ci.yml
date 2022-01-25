@@ -44,26 +44,61 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     # Library (docker)
-    - name: "Build multiarch docker image (clu-template)"
+    - name: "Build docker image (clu-template)"
       run: |
-        docker buildx build --load --platform linux/amd64 -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:amd64" .
-        docker buildx build --load --platform linux/arm64 -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:arm64" .
-    - name: "Test multiarch build (clu-template)"
+        docker build -f ${DOCKERFILE} -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${{ needs.setup.outputs.sha_short }}" .
+    - name: Test docker build
       run: |
-        docker run -i "${ORG}/${IMAGE_NAME}:amd64" cookiecutter --version
-        docker run -i "${ORG}/${IMAGE_NAME}:arm64" cookiecutter --version
-
+        docker run -i "${ORG}/${IMAGE_NAME}:latest" cookiecutter --version
+    
     # test clu-template
     - name: Test clu-template
       run: |
-        docker run -i "${ORG}/${IMAGE_NAME}:amd64" cookiecutter --no-input /app
+        pwd
+        docker run -i -v $PWD:/app "${ORG}/${IMAGE_NAME}:latest" cookiecutter --no-input /app --directory="templates/python"
+        docker run -i -v $PWD:/app "${ORG}/${IMAGE_NAME}:latest" cookiecutter --no-input /app --directory="templates/odin"
+        ls -1
+    
+    # test python test render
+    # - name: Test python rendering
+    #   working-directory: ./clu-python-template
+    #   run: |
+    #     if [ $(grep -r "clu\.temp" | wc -l) != 7 ]; then exit 1; fi
+    
+    # Library
+    - name: "Install library (clu-temp)"
+      working-directory: ./clu-python-template
+      run: |
+        pip install wheel
+        sudo pip install -e ".[all]"
+    # Tests
+    - name: Tests and coverage (clu-temp)
+      working-directory: ./clu-python-template
+      run: |
+        sudo green -vvvv --run-coverage .
+
+    # test odin test render
+    # - name: Test odin rendering
+    #   working-directory: ./clu-odin-template
+    #   run: |
+    #     if [ $(grep -r "org\.parsertongue" | wc -l) != 103 ]; then exit 1; fi
+    
+    # JDK 11 and tests
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: "11"
+        java-package: jdk
+    - name: Run tests (odin)
+      working-directory: ./clu-odin-template
+      run: sudo sbt cleanTest
     
     # build and publish
     - name: "Publish docker image (cookiecutter image)"
       continue-on-error: true
       if: github.ref == 'refs/heads/main'
       run: |
-        docker buildx build --platform=linux/amd64,linux/arm64 -f ${DOCKERFILE} --push -t "${ORG}/${IMAGE_NAME}:latest" -t "${ORG}/${IMAGE_NAME}:${TAG}" -t "${ORG}/${IMAGE_NAME}:${{ needs.setup.outputs.sha_short }}" .
+        docker image push --all-tags "${ORG}/${IMAGE_NAME}" 
 
     # docs
     - name: "Create documentation (other)"

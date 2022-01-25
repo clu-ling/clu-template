@@ -1,0 +1,15 @@
+**/assembly
+
+*.class
+*.log
+.idea
+.idea/*
+*.iml
+core/*.iml
+.#*
+.DS_Store
+Makefile
+
+.vscode/
+**/target/**
+.metals/

@@ -1,0 +1,164 @@
+###############################
+#
+# time expressions
+#
+###############################
+vars:
+  actionFlow: identityAction
+
+rules:
+  - name: "weekday"
+    label: DayOfWeek
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      [lemma=/(?i)^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)$/]
+  
+  - name: "month"
+    label: Month
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      January|February|March|April|May|June|July|August|September|October|November|December |
+      Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec |
+      Sept
+
+  - name: "calendar-day"
+    label: CalendarDay
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      # August 12
+      (?<=@Month) [word=/^\d{1,2}(nd|rd|th|st)?$/]
+      |
+      [word=/^([0-2]?\d|3[0-1])(nd|rd|th|st)$/] (?=","? @Year)
+      #added 'st' to allow for e.g. March 1st
+
+  - name: "year"
+    label: Year
+    priority: 3+
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      # in 2014
+      (?<=[tag=IN]) [word=/^(1[8-9]|2[0-1])?[0-9][0-9]$/]
+      | 
+      # "12 2020" or August 2020
+      (?<=@Month|[word=/^([0-2]?\d|3[0-1])(nd|rd|th|st)?$/] ","?) [word=/^(1[8-9]|2[0-1])?[0-9][0-9]$/]
+      |
+      (?<=[word=/^(0?[1-9]|1[0-2])$/] ","?) [word=/^(1[8-9]|2[0-1])?[0-9][0-9]$/]
+      |
+      [word=/^(1[8-9]|20)[0-9][0-9]$/ & !mention=Quantity]
+
+  - name: "fiscal-year"
+    label: FiscalYear
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      [word=/^FY\d{4}/]
+
+  - name: "date"
+    label: Date
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      # "August 2020" or "August 3 2020"
+      #(?<month> @Month) (?<day> @Day)? ","? (?<year> @Year)  
+      # code above generates "multi-dates"; code below a single date
+      @month:Month @day:CalendarDay? ","? @year:Year
+      |
+      @month:Month @day:CalendarDay
+
+  - name: "date-slashed"
+    label: Date
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      # 01/05/1986, 1/4/82
+      [word=/^[0-9]{1,2}\/[0-9]{1,2}\/(1[8-9]|2[0-1])?[0-9][0-9]/]
+      |
+      # 01/86
+      [word=/^([0-9]{1,2}\/[0-9][0-9])/]
+
+  - name: "date-YYYY-MM-DD"
+    label: Date
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      # 1986-12-21; 2021 11 30
+      # 2012 - 06 - 15 not handled yet; tag=punct?? something weird happening losing a space in parsing...
+      [word=/^(1[8-9]|2[0-1])\d\d-?(0[1-9]|1[0-2])-?([0-2]\d|3[0-1])$/]
+      |
+      [word=/^(1[8-9]|2[0-1])\d\d$/] [word=/^(0[1-9]|1[0-2])$/] [word=/^([0-2]\d|3[0-1])$/]      
+
+  - name: "date-DD-mmm-YYYY"
+    label: Date
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      # 12-JUN-2021; 12 Jun 2021
+      [word=/^(?i)([0-2]\d|3[0-1])-(j(an|u[l,n])|a(ug|pr)|feb|mar|sep|oct|nov|dec)-(1[8-9]|2[0-1])\d\d$/]
+      |
+      [word=/^([0-2]\d|3[0-1])$/] [word=/^(?i)(j(an|u[l,n])|a(ug|pr)|feb|mar|sep|oct|nov|dec)$/] [word=/^(1[8-9]|2[0-1])\d\d$/] (?![word=/^(?i)hours$/])
+      #neg lookahead for 'hours': "DDDD hours" is common in military parlance; this check is to avoid reading as a date
+      #something like "12 Jun 2100 hours", i.e. 12 Jun 9 PM.
+
+  - name: "on-time-expression"
+    label: OnTime
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      (?<trigger> [lemma=/^(on|at|around|about)$/]) @time:TimeExpression
+
+  - name: "after-time-expression"
+    label: AfterTime
+    action: ${actionFlow}
+    pattern: |
+      trigger = [word=/^(?i)(start|starting|beginning|from|after|following|since|past|post)$/] 
+      count:Quantity? = <amod nummod
+      time:TimeExpression = <amod | <case 
+
+  - name: "before-time-expression"
+    label: BeforeTime
+    action: ${actionFlow}
+    pattern: |
+      trigger = [lemma=/^(before|by|end|ending|until|to)$/]
+      count:Quantity? = <amod nummod
+      time:TimeExpression = <amod | <case
+
+  - name: "before-time-expression-surface-1"
+    label: BeforeTime
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      (?<trigger> [lemma=/^(before|by|end|ending|until|to)$/]) (?<time> @TimeExpression)
+  
+  - name: "interval-time-expression"
+    label: IntervalTime
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      [lemma=/^(since|until|during|through|throughout|over|for)$/] @TimeExpression 
+      #note that 'since', 'until' are both interval and after/before
+      |
+      (?<start> @AfterTime) (?<end> @BeforeTime)
+      |
+      [lemma=between] (?<start> @TimeExpression) [lemma=and] (?<end> @TimeExpression)
+      # todo: add possibility of conjunction, ex. 'starting 9/20 and ending 11/20'
+
+  - name: "complex-interval-time-expression"
+    label: ComplexIntervalTime
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      (?<frequency> [lemma=/^(daily|everyday)$/]) (@interval:IntervalTime)
+
+  - name: "time-unit"
+    label: TimeUnit
+    type: token
+    action: ${actionFlow}
+    pattern: |
+      [tag=DT]* 
+      [tag=JJ]* 
+      [lemma=/^(second|minute|hour|day|week|fortnight|month|year|annum|decade|century)$/ & tag=/^N/] 
+      ([word=of]? @TimeExpression+)?

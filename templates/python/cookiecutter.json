@@ -1,0 +1,14 @@
+{
+    "namespace": "clu",
+    "package_name": "temp",
+    "repo_organization": "clu-ling",
+    "repo_name": "clu-python-template",    
+    "image_organization": "parsertongue",
+    "image_name": "{{ cookiecutter.repo_name }}",
+    "authors": "myedibleenso,zwellington",
+    "description": "template",
+    "contact_info": "email@email.com",
+    "include_docker_ci": ["y", "n"],
+    "include_rest_api": ["y", "n"],
+    "license": "Apache 2.0"
+}
