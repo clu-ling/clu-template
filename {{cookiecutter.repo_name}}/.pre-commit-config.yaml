@@ -1,3 +1,4 @@
+
 # manually run via pre-commit run --all-files
 # alternatively, pre-commit run <hook_id> to run a specific hook
 default_language_version:
@@ -6,7 +7,7 @@ minimum_pre_commit_version: 2.9.2
 
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.0.1
+  rev: v2.3.0
   hooks:
     - id: check-merge-conflict
     - id: check-yaml
