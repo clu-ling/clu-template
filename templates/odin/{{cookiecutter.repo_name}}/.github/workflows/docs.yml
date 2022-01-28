@@ -1,4 +1,4 @@
-name: Scala CI
+name: Scala CI (documentation)
 
 on:
   push:
@@ -21,10 +21,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        distribution: [ 'zulu', 'temurin' ]
-        java: [ '8', '11' ]
     needs: setup
     steps:
     # Checkout code
@@ -39,12 +35,24 @@ jobs:
       with:
         username: ${{ "{{" }} secrets.DOCKERHUB_USERNAME }}
         password: ${{ "{{" }}  secrets.DOCKERHUB_TOKEN }}
-
-    # JDK 11 and tests
-    - name: Set up java
-      uses: actions/setup-java@v2
+    # docs
+    - name: "Create documentation (API docs)"
+      run: sbt documentize
+    # docs
+    - name: "Create documentation (other)"
+      env: 
+        ORG: "parsertongue"
+        IMAGE_NAME: "mkdocs"
+        TAG: "latest"
+      run: |
+        docker run -i -v "$GITHUB_WORKSPACE:/app" "${ORG}/${IMAGE_NAME}:${TAG}" mkdocs build -c
+    - name: Deploy docs
+      if: github.ref == 'refs/heads/master'
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        distribution: ${{ "{{" }} matrix.distribution }}
-        java-version: ${{ "{{" }} matrix.java }}
-    - name: Run tests
-      run: sbt cleanTest
+        # see https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
+        github_token: ${{ "{{" }} secrets.GITHUB_TOKEN }}
+        publish_dir: ./site
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        commit_message: ${{ "{{" }} github.event.head_commit.message }}
