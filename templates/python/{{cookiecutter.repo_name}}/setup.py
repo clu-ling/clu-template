@@ -19,6 +19,7 @@ dev_deps = test_deps + [
     "wheel==0.37.1",
     # "black @ git+git://github.com/psf/black.git",
     "mkdocs==1.2.3",
+    "jinja2==3.0.3",
     # "portray @ git+git://github.com/myedibleenso/portray.git@issue/83",
     # "portray @ git+git://github.com/myedibleenso/portray.git@avoid-regressions",
     # "mkapi==1.0.14",
