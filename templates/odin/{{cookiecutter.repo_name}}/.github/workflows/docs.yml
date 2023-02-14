@@ -2,9 +2,9 @@ name: Scala CI (documentation)
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   setup:
@@ -47,7 +47,7 @@ jobs:
       run: |
         docker run -i -v "$GITHUB_WORKSPACE:/app" "${ORG}/${IMAGE_NAME}:${TAG}" mkdocs build -c
     - name: Deploy docs
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
       uses: peaceiris/actions-gh-pages@v3
       with:
         # see https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
