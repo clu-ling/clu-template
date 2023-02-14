@@ -25,7 +25,7 @@ jobs:
       IMAGE_NAME: "clu-template"
       TAG: "3.8"
       DOCKERFILE: "Dockerfile"
-    name: "Python library"
+    name: "clu-template library"
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -74,7 +74,7 @@ jobs:
       working-directory: ./clu-python-template
       run: |
         pip install wheel
-        sudo pip install -e ".[all]"
+        sudo pip install ".[all]"
     # Tests
     - name: Tests and coverage (clu-temp)
       working-directory: ./clu-python-template
@@ -113,7 +113,7 @@ jobs:
       run: |
         docker run -i -v "$GITHUB_WORKSPACE:/app" "${ORG}/${IMAGE_NAME}" mkdocs build -c
     - name: Deploy docs
-      if: github.ref == 'refs/heads/main'
+      if: ${{ github.ref == 'refs/heads/main' && matrix.distribution == 'temurin' && matrix.java == '11' }}
       uses: peaceiris/actions-gh-pages@v3
       with:
         # see https://docs.github.com/en/free-pro-team@latest/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
